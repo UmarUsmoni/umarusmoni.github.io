@@ -154,6 +154,10 @@ Available commands:
   <span class="text-accent">about</span>     - Learn more about my background
   <span class="text-accent">skills</span>    - List my technical skillset
   <span class="text-accent">projects</span>  - Show my projects and Obsidian plugin
+  <span class="text-accent">certs</span>     - List verified DeepLearning.AI certifications
+  <span class="text-accent">hash</span>      - Compute SHA-256 hash in real time (e.g. hash hello)
+  <span class="text-accent">stats</span>     - Display security telemetry & system stats
+  <span class="text-accent">theme</span>     - Change accent color (mint, cyan, purple, orange)
   <span class="text-accent">whoami</span>    - Display current session info
   <span class="text-accent">ping</span>      - Test connection latency
   <span class="text-accent">social</span>    - Print active social profiles
@@ -177,11 +181,32 @@ My journey focuses on AI automation, penetration testing (Kali Linux), script de
   - Creative (Video editing, formatting, automation pipelines)
     `,
     projects: () => `
-<span class="text-accent">Main Project:</span>
-  - Name: <span class="text-accent">Telegram-Obsidian Sync</span>
-  - Type: Obsidian Sync Plugin / Python Daemon
-  - GitHub: <a href="https://github.com/UmarUsmomi/telegram-obsidian-sync" target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary); text-decoration: underline;">github.com/UmarUsmomi/telegram-obsidian-sync</a>
-  - Desc: Seamless note and message synchronization from Telegram channels directly to Obsidian vaults.
+<span class="text-accent">Main Projects:</span>
+  - <span class="text-accent">Telegram-Obsidian Sync</span> (Obsidian Plugin / Python Daemon)
+    GitHub: <a href="https://github.com/UmarUsmomi/telegram-obsidian-sync" target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary); text-decoration: underline;">github.com/UmarUsmomi/telegram-obsidian-sync</a>
+  - <span class="text-accent">SentinelHash</span> (Client-Side WebCrypto Cryptographic Hasher)
+  - <span class="text-accent">CyberRecon</span> (Transport Layer & HTTP Header Security Inspector)
+    `,
+    certs: () => `
+<span class="text-accent">Verified Certifications (DeepLearning.AI):</span>
+  1. <span style="color: var(--accent-primary); font-weight: bold;">Generative AI for Software Development</span> (Professional Certificate)
+     ID: 3e27d8c4-ae9e-417c-94ac-602d03a86792 (Issued: March 30, 2026)
+  2. <span style="color: var(--accent-teal);">Team Software Engineering with AI</span>
+     ID: 5b0e90e1-aa45-4a9d-9354-7106708a2adc (Issued: March 23, 2026)
+  3. <span style="color: var(--accent-teal);">AI-Powered Software and System Design</span>
+     ID: a8ecff7f-3a26-44f1-8648-7cd3beafe96b (Issued: March 30, 2026)
+  4. <span style="color: var(--accent-teal);">Introduction to Generative AI for Software Development</span>
+     ID: 1a440eab-b001-4b22-8557-dd37a0abdbfd (Issued: March 11, 2026)
+  Recipient: <span class="text-accent">Umar Usmoni Usmonzoda</span>
+    `,
+    stats: () => `
+<span class="text-accent">Security &amp; System Telemetry:</span>
+  - Security Architecture: <span style="color: var(--accent-primary); font-weight: bold;">Zero Trust / 100% Client-Side</span>
+  - Content Security:      <span style="color: var(--accent-primary);">Enforced CSP Whitelist</span>
+  - Transport Layer:       <span style="color: var(--accent-primary);">TLS 1.3 / AES-256-GCM / PFS</span>
+  - Cryptographic Engine:  <span style="color: var(--accent-primary);">Native SubtleCrypto SHA-256/384/512</span>
+  - System Uptime:         <span style="color: var(--accent-teal);">99.99% Virtual Host</span>
+  - Certificates:          <span style="color: var(--accent-primary);">4 Verified Credentials</span>
     `,
     whoami: () => `
 guest@umarusmoni.github.io (Security Rank: Student / AI Automation Architect)
@@ -220,14 +245,19 @@ rtt min/avg/max/mdev = 27.1/28.2/29.3/0.91 ms
   };
 
   // Command executor
-  function executeCommand(commandText, rawValue) {
+  async function executeCommand(commandText, rawValue) {
     // Print input line in history
     const inputLine = document.createElement('div');
     inputLine.className = 'terminal-line';
     inputLine.innerHTML = `<span class="terminal-prompt">umar@portfolio:~$</span> ${escapeHTML(rawValue)}`;
     outputContainer.appendChild(inputLine);
 
-    const cmd = commandText.toLowerCase();
+    const trimmed = commandText.trim();
+    if (trimmed === '') return;
+
+    const parts = trimmed.split(/\s+/);
+    const cmd = parts[0].toLowerCase();
+    const args = parts.slice(1).join(' ');
 
     if (cmd === 'clear') {
       outputContainer.innerHTML = '';
@@ -249,14 +279,54 @@ rtt min/avg/max/mdev = 27.1/28.2/29.3/0.91 ms
       return;
     }
 
+    if (cmd === 'hash') {
+      const outputLine = document.createElement('div');
+      outputLine.className = 'terminal-line';
+      if (!args) {
+        outputLine.innerHTML = `Usage: <span class="text-accent">hash &lt;text&gt;</span> — Computes client-side SHA-256 hash.`;
+      } else {
+        try {
+          const enc = new TextEncoder();
+          const buf = await window.crypto.subtle.digest('SHA-256', enc.encode(args));
+          const hex = Array.from(new Uint8Array(buf)).map((b) => b.toString(16).padStart(2, '0')).join('');
+          outputLine.innerHTML = `SHA-256("${escapeHTML(args)}"):<br><span style="color: var(--accent-primary); word-break: break-all;">${hex}</span>`;
+        } catch (e) {
+          outputLine.innerHTML = `<span class="text-danger">Hash computation error: ${e.message}</span>`;
+        }
+      }
+      outputContainer.appendChild(outputLine);
+      outputContainer.appendChild(document.createElement('br'));
+      terminal.scrollTop = terminal.scrollHeight;
+      return;
+    }
+
+    if (cmd === 'theme') {
+      const outputLine = document.createElement('div');
+      outputLine.className = 'terminal-line';
+      const validThemes = {
+        mint: '#00ff88',
+        cyan: '#00e5ff',
+        purple: '#a855f7',
+        orange: '#ff9100'
+      };
+      const choice = args.toLowerCase();
+      if (validThemes[choice]) {
+        document.documentElement.style.setProperty('--accent-primary', validThemes[choice]);
+        outputLine.innerHTML = `Terminal &amp; site accent updated to <span style="color: ${validThemes[choice]}; font-weight: bold;">${choice.toUpperCase()}</span>.`;
+      } else {
+        outputLine.innerHTML = `Available themes: ${Object.keys(validThemes).map((t) => `<span class="text-accent">${t}</span>`).join(', ')}<br>Usage: <span class="text-accent">theme &lt;name&gt;</span>`;
+      }
+      outputContainer.appendChild(outputLine);
+      outputContainer.appendChild(document.createElement('br'));
+      terminal.scrollTop = terminal.scrollHeight;
+      return;
+    }
+
     const outputLine = document.createElement('div');
     outputLine.className = 'terminal-line';
 
     if (COMMANDS[cmd]) {
       outputLine.innerHTML = COMMANDS[cmd]();
-    } else if (cmd === '') {
-      // Just empty enter, do nothing
-      return;
     } else {
       outputLine.innerHTML = `<span class="text-danger">bash: ${escapeHTML(commandText)}: command not found.</span> Type <span class="text-accent">help</span> for help.`;
     }

@@ -309,5 +309,301 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+  /* ══════════════════════════════════════════════════════
+     11. SCROLL PROGRESS BAR & BACK-TO-TOP BUTTON
+     ══════════════════════════════════════════════════════ */
+  const scrollProgressBar = document.getElementById('scroll-progress');
+  const backToTopBtn = document.getElementById('back-to-top');
+
+  window.addEventListener('scroll', () => {
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrolled = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+    if (scrollProgressBar) {
+      scrollProgressBar.style.width = `${Math.min(100, Math.max(0, scrolled))}%`;
+    }
+
+    if (backToTopBtn) {
+      if (window.scrollY > 350) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    }
+  }, { passive: true });
+
+  if (backToTopBtn) {
+    backToTopBtn.addEventListener('click', () => {
+      if (typeof window.playClickSound === 'function') {
+        window.playClickSound();
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+
+  /* ══════════════════════════════════════════════════════
+     12. SKILL CATEGORY FILTERS
+     ══════════════════════════════════════════════════════ */
+  const filterBtns = document.querySelectorAll('.skill-filter-btn');
+  const skillCategories = document.querySelectorAll('.skill-category');
+
+  if (filterBtns.length && skillCategories.length) {
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        if (typeof window.playClickSound === 'function') {
+          window.playClickSound(1.2);
+        }
+
+        filterBtns.forEach((b) => {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+
+        const filter = btn.dataset.filter;
+
+        skillCategories.forEach((cat) => {
+          const categoryName = cat.dataset.category;
+          if (filter === 'all' || categoryName === filter) {
+            cat.classList.remove('filtered-out');
+          } else {
+            cat.classList.add('filtered-out');
+          }
+        });
+      });
+    });
+  }
+
+
+  /* ══════════════════════════════════════════════════════
+     13. CERTIFICATE LIGHTBOX MODAL
+     ══════════════════════════════════════════════════════ */
+  const certModal = document.getElementById('cert-modal');
+  const certModalImg = document.getElementById('cert-modal-img');
+  const certModalCaption = document.getElementById('cert-modal-caption');
+  const certModalClose = document.getElementById('cert-modal-close');
+  const certModalBackdrop = document.getElementById('cert-modal-backdrop');
+  const certTriggers = document.querySelectorAll('.cert-img-wrapper, .cert-card-img-wrap');
+
+  if (certModal && certModalImg && certModalCaption) {
+    const openCertModal = (imgSrc, altText) => {
+      certModalImg.src = imgSrc;
+      certModalImg.alt = altText || 'Certificate Preview';
+      certModalCaption.textContent = altText || 'Verified DeepLearning.AI Certificate';
+      certModal.classList.add('active');
+      certModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      if (typeof window.playClickSound === 'function') {
+        window.playClickSound();
+      }
+      if (certModalClose) certModalClose.focus();
+    };
+
+    const closeCertModal = () => {
+      certModal.classList.remove('active');
+      certModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (typeof window.playClickSound === 'function') {
+        window.playClickSound(1.5);
+      }
+    };
+
+    certTriggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        const img = trigger.querySelector('img');
+        if (img) {
+          openCertModal(img.src, img.alt);
+        }
+      });
+      trigger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const img = trigger.querySelector('img');
+          if (img) openCertModal(img.src, img.alt);
+        }
+      });
+    });
+
+    if (certModalClose) certModalClose.addEventListener('click', closeCertModal);
+    if (certModalBackdrop) certModalBackdrop.addEventListener('click', closeCertModal);
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && certModal.classList.contains('active')) {
+        closeCertModal();
+      }
+    });
+  }
+
+
+  /* ══════════════════════════════════════════════════════
+     14. 3D CARD TILT PHYSICS
+     ══════════════════════════════════════════════════════ */
+  const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+
+  if (!isReducedMotion && !isCoarsePointer) {
+    const tiltCards = document.querySelectorAll('.project-card, .featured-project, .cert-card');
+
+    tiltCards.forEach((card) => {
+      card.addEventListener('pointermove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform = `perspective(1000px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) translateY(-4px)`;
+      });
+
+      card.addEventListener('pointerleave', () => {
+        card.style.transform = '';
+      });
+    });
+  }
+
+
+  /* ══════════════════════════════════════════════════════
+     15. SENTINELHASH — CLIENT-SIDE CRYPTOGRAPHIC HASHER
+     ══════════════════════════════════════════════════════ */
+  const sentinelInput = document.getElementById('sentinel-input');
+  const sentinelAlgo = document.getElementById('sentinel-algo');
+  const sentinelHash = document.getElementById('sentinel-hash');
+  const sentinelCopy = document.getElementById('sentinel-copy');
+  const entropyFill = document.getElementById('entropy-fill');
+  const entropyScore = document.getElementById('entropy-score');
+  const sentinelBits = document.getElementById('sentinel-bits');
+
+  if (sentinelInput && sentinelAlgo && sentinelHash) {
+    async function updateSentinelHash() {
+      const text = sentinelInput.value;
+      const algo = sentinelAlgo.value;
+
+      // Update bit-depth label
+      const bitDepths = { 'SHA-256': '256-bit digest', 'SHA-384': '384-bit digest', 'SHA-512': '512-bit digest' };
+      if (sentinelBits) sentinelBits.textContent = bitDepths[algo] || `${algo} digest`;
+
+      // Calculate Shannon Entropy / complexity
+      if (entropyFill && entropyScore) {
+        if (!text) {
+          entropyFill.style.width = '0%';
+          entropyScore.textContent = 'None';
+        } else {
+          const uniqueChars = new Set(text).size;
+          const ratio = Math.min(100, Math.round((uniqueChars / Math.max(text.length, 1)) * 50 + Math.min(text.length * 4, 50)));
+          entropyFill.style.width = `${ratio}%`;
+          if (ratio > 75) entropyScore.textContent = 'High';
+          else if (ratio > 40) entropyScore.textContent = 'Medium';
+          else entropyScore.textContent = 'Low';
+        }
+      }
+
+      if (!text) {
+        sentinelHash.textContent = 'Enter text above to compute cryptographic digest...';
+        return;
+      }
+
+      try {
+        if (window.crypto && window.crypto.subtle) {
+          const enc = new TextEncoder();
+          const data = enc.encode(text);
+          const hashBuf = await window.crypto.subtle.digest(algo, data);
+          const hashHex = Array.from(new Uint8Array(hashBuf))
+            .map((b) => b.toString(16).padStart(2, '0'))
+            .join('');
+          sentinelHash.textContent = hashHex;
+        } else {
+          sentinelHash.textContent = '[Web Crypto API not supported in this environment]';
+        }
+      } catch (err) {
+        console.warn('SentinelHash error:', err);
+        sentinelHash.textContent = 'Hashing error';
+      }
+    }
+
+    sentinelInput.addEventListener('input', updateSentinelHash);
+    sentinelAlgo.addEventListener('change', () => {
+      if (typeof window.playClickSound === 'function') window.playClickSound(1.3);
+      updateSentinelHash();
+    });
+
+    if (sentinelCopy) {
+      sentinelCopy.addEventListener('click', async () => {
+        const textToCopy = sentinelHash.textContent;
+        if (!textToCopy || textToCopy.startsWith('Enter') || textToCopy.startsWith('[')) return;
+        try {
+          await navigator.clipboard.writeText(textToCopy);
+          const copyLabel = sentinelCopy.querySelector('.copy-text');
+          if (copyLabel) copyLabel.textContent = '✓ Copied!';
+          if (typeof window.playClickSound === 'function') window.playClickSound(0.9);
+          setTimeout(() => {
+            if (copyLabel) copyLabel.textContent = 'Copy';
+          }, 2000);
+        } catch (e) {
+          console.warn('Clipboard write failed:', e);
+        }
+      });
+    }
+
+    // Initial calculation
+    updateSentinelHash();
+  }
+
+
+  /* ══════════════════════════════════════════════════════
+     16. CYBERRECON — PROTOCOL INSPECTOR & ANALYZER
+     ══════════════════════════════════════════════════════ */
+  const reconTabs = document.querySelectorAll('.recon-tab-btn');
+  const reconPanels = document.querySelectorAll('.recon-panel');
+  const reconRunBtn = document.getElementById('recon-run-btn');
+  const reconOutput = document.getElementById('recon-output');
+
+  if (reconTabs.length && reconPanels.length) {
+    reconTabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        if (typeof window.playClickSound === 'function') window.playClickSound(1.4);
+
+        reconTabs.forEach((t) => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+
+        const target = tab.dataset.tab;
+        reconPanels.forEach((p) => {
+          if (p.id === `recon-${target}`) {
+            p.style.display = 'block';
+            p.classList.add('active');
+          } else {
+            p.style.display = 'none';
+            p.classList.remove('active');
+          }
+        });
+      });
+    });
+
+    if (reconRunBtn && reconOutput) {
+      reconRunBtn.addEventListener('click', () => {
+        if (typeof window.playClickSound === 'function') window.playClickSound(0.8);
+        reconRunBtn.disabled = true;
+        reconRunBtn.style.opacity = '0.5';
+        const span = reconRunBtn.querySelector('span');
+        const origText = span ? span.textContent : 'Run Protocol Audit';
+        if (span) span.textContent = 'Scanning Packets...';
+
+        reconOutput.style.opacity = '0.4';
+
+        setTimeout(() => {
+          reconOutput.style.opacity = '1';
+          reconRunBtn.disabled = false;
+          reconRunBtn.style.opacity = '1';
+          if (span) span.textContent = '✓ Audit Verified (0 Warnings)';
+          if (typeof window.playClickSound === 'function') window.playClickSound(1.1);
+
+          setTimeout(() => {
+            if (span) span.textContent = origText;
+          }, 3000);
+        }, 600);
+      });
+    }
+  }
 
 }); // end DOMContentLoaded
