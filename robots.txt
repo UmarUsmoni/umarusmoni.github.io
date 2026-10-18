@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://umarusmomi.github.io/umarusmoni.github.io/sitemap.xml
