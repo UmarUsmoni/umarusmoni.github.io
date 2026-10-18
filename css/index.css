@@ -1,111 +1,137 @@
-/* ============================================================
-   INDEX.CSS — Design Tokens, Reset, Base Typography & Utilities
-   Umar Usmoni · Cybersecurity Portfolio
-   ============================================================ */
-
-/* ----- 1. CSS Custom Properties (Design Tokens) ------------- */
 :root {
-  /* Backgrounds */
-  --bg-primary:    #050505;
-  --bg-secondary:  #0a0f0a;
-  --bg-card:       rgba(10, 18, 12, 0.55);
-  --bg-card-hover: rgba(16, 185, 129, 0.12);
-
-  /* Borders */
-  --border-glass:  rgba(16, 185, 129, 0.15);
-  --border-focus:  rgba(16, 185, 129, 0.40);
-
-  /* Accents */
-  --accent-primary:   #00ff88;
-  --accent-secondary: #10b981;
-  --accent-teal:      #14b8a6;
-
-  /* Text */
-  --text-primary:   #e2e8f0;
-  --text-secondary: #94a3b8;
-  --text-muted:     #64748b;
-
-  /* Shadows & Glows */
-  --glow-green:     0 0 20px rgba(0, 255, 136, 0.3);
-  --glow-green-lg:  0 0 40px rgba(0, 255, 136, 0.25), 0 0 80px rgba(0, 255, 136, 0.10);
-  --glow-green-sm:  0 0 8px rgba(0, 255, 136, 0.20);
-
-  /* Typography */
-  --font-heading: 'Space Grotesk', sans-serif;
-  --font-body:    'Inter', sans-serif;
-  --font-mono:    'JetBrains Mono', monospace;
-
-  /* Fluid type scale — min @ 375px, max @ 1440px */
-  --fs-display: clamp(3rem, 8vw, 7rem);
-  --fs-h1:      clamp(2.25rem, 5vw, 4rem);
-  --fs-h2:      clamp(1.75rem, 3.5vw, 2.75rem);
-  --fs-h3:      clamp(1.25rem, 2.5vw, 1.75rem);
-  --fs-h4:      clamp(1.05rem, 1.5vw, 1.25rem);
-  --fs-body:    clamp(0.95rem, 1vw, 1.1rem);
-  --fs-small:   clamp(0.8rem, 0.9vw, 0.9rem);
-  --fs-xs:      clamp(0.7rem, 0.75vw, 0.8rem);
-
-  /* Spacing */
-  --section-pad:  clamp(80px, 10vw, 120px);
-  --container-w:  1200px;
-  --container-sm: 800px;
-
-  /* Transitions */
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-spring:   cubic-bezier(0.34, 1.56, 0.64, 1);
-  --transition:    0.35s var(--ease-out-expo);
-
-  /* Misc */
-  --radius:    16px;
+  color-scheme: dark;
+  --color-ink: #0b0f0d;
+  --color-ink-soft: #101612;
+  --color-surface: #121a15;
+  --color-surface-raised: #19231c;
+  --color-text: #f3f0e8;
+  --color-muted: #a4ada3;
+  --color-subtle: #717b73;
+  --color-accent: #c7f36b;
+  --color-accent-strong: #d9ff83;
+  --color-teal: #77c9ad;
+  --color-line: rgba(195, 213, 197, 0.14);
+  --color-line-strong: rgba(199, 243, 107, 0.45);
+  --color-focus: #e5ff9d;
+  --shadow-panel: 0 24px 80px rgba(0, 0, 0, 0.18);
+  --shadow-accent: 0 16px 50px rgba(199, 243, 107, 0.11);
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Arial Narrow", Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --size-xs: 0.72rem;
+  --size-sm: 0.84rem;
+  --size-body: 1rem;
+  --size-lede: clamp(1.1rem, 1.3vw, 1.35rem);
+  --size-h1: clamp(3.65rem, 9.2vw, 9.6rem);
+  --size-h2: clamp(2.55rem, 5.5vw, 6rem);
+  --size-h3: clamp(1.35rem, 2.2vw, 2rem);
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
   --radius-sm: 8px;
-  --radius-xl: 24px;
-  --radius-pill: 50px;
-  --blur:      20px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+  --container: 1200px;
+  --gutter: clamp(16px, 4vw, 40px);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 160ms var(--ease-out);
+  --transition: 240ms var(--ease-out);
 }
 
-/* ----- 2. Modern CSS Reset ---------------------------------- */
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+    --color-ink: #f4f5ee;
+    --color-ink-soft: #e8eee2;
+    --color-surface: #ffffff;
+    --color-surface-raised: #eef3e9;
+    --color-text: #172019;
+    --color-muted: #4c5b50;
+    --color-subtle: #68766b;
+    --color-accent: #436d17;
+    --color-accent-strong: #365a10;
+    --color-teal: #16715d;
+    --color-line: rgba(25, 52, 33, 0.16);
+    --color-line-strong: rgba(54, 90, 16, 0.45);
+    --color-focus: #27490a;
+    --shadow-panel: 0 24px 80px rgba(30, 62, 36, 0.1);
+    --shadow-accent: 0 16px 50px rgba(67, 109, 23, 0.12);
+  }
+}
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 html {
   scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  hanging-punctuation: first last;
 }
 
 body {
+  min-width: 320px;
   min-height: 100vh;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  font-family: var(--font-body);
-  font-size: var(--fs-body);
-  line-height: 1.7;
+  margin: 0;
+  background: var(--color-ink);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--size-body);
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: radial-gradient(circle at 80% 10%, rgba(119, 201, 173, 0.08), transparent 32rem), radial-gradient(circle at 10% 30%, rgba(199, 243, 107, 0.05), transparent 28rem);
+  content: "";
+  pointer-events: none;
+}
+
+body::after {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: linear-gradient(to right, transparent 0, transparent calc(100% - 1px), var(--color-line) 100%);
+  background-size: 25% 100%;
+  content: "";
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+body.menu-open {
+  overflow: hidden;
 }
 
 img,
-picture,
-video,
-canvas,
-svg {
+svg,
+video {
   display: block;
   max-width: 100%;
 }
 
-input,
 button,
+input,
 textarea,
 select {
   font: inherit;
-  color: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
 }
 
 a {
@@ -113,133 +139,86 @@ a {
   text-decoration: none;
 }
 
-ul,
-ol {
+button {
+  border: 0;
+}
+
+h1,
+h2,
+h3,
+p,
+ul {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  line-height: 0.98;
+}
+
+ul {
+  padding: 0;
   list-style: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  overflow-wrap: break-word;
-  font-family: var(--font-heading);
-  line-height: 1.15;
-  color: var(--text-primary);
-}
-
-p {
-  overflow-wrap: break-word;
-  max-width: 75ch;            /* Readable line length */
-}
-
-/* ----- 3. Base Typography ----------------------------------- */
-h1 { font-size: var(--fs-h1); font-weight: 800; letter-spacing: -1.5px; }
-h2 { font-size: var(--fs-h2); font-weight: 700; letter-spacing: -1px;   }
-h3 { font-size: var(--fs-h3); font-weight: 600; }
-h4 { font-size: var(--fs-h4); font-weight: 600; }
-
-code,
-kbd,
-pre {
-  font-family: var(--font-mono);
-  font-size: 0.9em;
-}
-
-strong { font-weight: 700; }
-
-/* ----- 4. Selection ----------------------------------------- */
 ::selection {
-  background: rgba(0, 255, 136, 0.25);
-  color: #fff;
+  background: var(--color-accent);
+  color: var(--color-ink);
 }
 
-::-moz-selection {
-  background: rgba(0, 255, 136, 0.25);
-  color: #fff;
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 4px;
 }
 
-/* ----- 5. Scrollbar Styling --------------------------------- */
-/* Webkit (Chrome, Edge, Safari) */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg-secondary);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--accent-secondary);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-primary);
-}
-
-/* Firefox */
-html {
-  scrollbar-width: thin;
-  scrollbar-color: var(--accent-secondary) var(--bg-secondary);
-}
-
-/* ----- 6. Utility Classes ----------------------------------- */
-
-/* Glow — adds green box-shadow */
-.glow {
-  box-shadow: var(--glow-green);
-}
-
-.glow-lg {
-  box-shadow: var(--glow-green-lg);
-}
-
-/* Glass — frosted-glass panel */
-.glass {
-  background: var(--bg-card);
-  backdrop-filter: blur(var(--blur));
-  -webkit-backdrop-filter: blur(var(--blur));
-  border: 1px solid var(--border-glass);
-}
-
-/* Shimmer — holographic text effect (needs .shimmer-text class in animations.css too) */
-.shimmer {
-  background: linear-gradient(
-    120deg,
-    var(--text-primary) 0%,
-    var(--accent-primary) 25%,
-    var(--accent-teal) 50%,
-    var(--text-primary) 75%,
-    var(--text-primary) 100%
-  );
-  background-size: 300% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Text Gradient — static green gradient text */
-.text-gradient {
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-teal));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Container */
 .container {
-  width: 100%;
-  max-width: var(--container-w);
+  width: min(100% - (var(--gutter) * 2), var(--container));
   margin-inline: auto;
-  padding-inline: 24px;
 }
 
-.container-sm {
-  width: 100%;
-  max-width: var(--container-sm);
-  margin-inline: auto;
-  padding-inline: 24px;
+.section-frame {
+  position: relative;
+  padding-block: clamp(88px, 12vw, 168px);
+  scroll-margin-top: 88px;
 }
 
-/* Visually hidden (accessible) */
+.section-frame-soft {
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.018) 50%, transparent);
+}
+
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 2000;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--color-accent);
+  color: var(--color-ink);
+  font-size: var(--size-sm);
+  font-weight: 700;
+  transform: translateY(-160%);
+  transition: transform var(--transition-fast);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.eyebrow {
+  color: var(--color-subtle);
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -252,105 +231,23 @@ html {
   border: 0;
 }
 
-/* Flex utilities */
-.flex        { display: flex; }
-.flex-center { display: flex; align-items: center; justify-content: center; }
-.flex-col    { display: flex; flex-direction: column; }
-.gap-sm      { gap: 8px; }
-.gap-md      { gap: 16px; }
-.gap-lg      { gap: 24px; }
-.gap-xl      { gap: 40px; }
-
-/* Text utilities */
-.text-center { text-align: center; }
-.text-muted  { color: var(--text-secondary); }
-.text-accent {
-  color: var(--accent-primary);
-  text-shadow: 0 0 5px rgba(0, 255, 136, 0.35);
-}
-.font-mono   { font-family: var(--font-mono); }
-
-/* ----- 7. Responsive Base Adjustments ----------------------- */
 @media (max-width: 768px) {
-  body {
-    line-height: 1.6;
+  html {
+    scroll-behavior: auto;
   }
 
-  .container,
-  .container-sm {
-    padding-inline: 16px;
-  }
-}
-
-@media (max-width: 480px) {
-  .container,
-  .container-sm {
-    padding-inline: 12px;
+  body::after {
+    display: none;
   }
 }
 
-/* ----- 8. Glowing Nebula Background & Grid Overlay (Option A) ------------- */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: 
-    linear-gradient(rgba(0, 255, 136, 0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 255, 136, 0.015) 1px, transparent 1px);
-  background-size: 50px 50px;
-  background-position: center;
-  pointer-events: none;
-  z-index: -2; /* Behind everything */
-}
-
-.nebula-glow {
-  position: fixed;
-  border-radius: 50%;
-  filter: blur(130px);
-  -webkit-filter: blur(130px);
-  pointer-events: none;
-  z-index: -1;
-  opacity: 0.16; /* Faint yet visible glowing neon fog banks (mobile & desktop) */
-  animation: nebula-drift 32s ease-in-out infinite alternate;
-}
-
-.nebula-1 {
-  width: min(90vw, 650px);
-  height: min(90vw, 650px);
-  background: radial-gradient(circle, rgba(0, 255, 136, 0.5) 0%, transparent 70%);
-  top: -15%;
-  left: -10%;
-  animation-duration: 35s;
-}
-
-.nebula-2 {
-  width: min(100vw, 750px);
-  height: min(100vw, 750px);
-  background: radial-gradient(circle, rgba(20, 184, 166, 0.55) 0%, transparent 70%);
-  bottom: -20%;
-  right: -10%;
-  animation-duration: 45s;
-  animation-delay: -7s;
-}
-
-.nebula-3 {
-  width: min(80vw, 550px);
-  height: min(80vw, 550px);
-  background: radial-gradient(circle, rgba(16, 185, 129, 0.45) 0%, transparent 70%);
-  top: 35%;
-  right: 10%;
-  animation-duration: 40s;
-  animation-delay: -12s;
-}
-
-@keyframes nebula-drift {
-  0% {
-    transform: translate(0, 0) scale(1);
-  }
-  50% {
-    transform: translate(60px, -50px) scale(1.1);
-  }
-  100% {
-    transform: translate(-30px, 60px) scale(0.95);
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }
