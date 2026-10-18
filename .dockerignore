@@ -1,0 +1,12 @@
+.git
+.omo
+.opencode
+.omnirush
+.venv
+.pytest_cache
+__pycache__
+*.py[cod]
+.env
+.qa
+README.md
+DESIGN.md

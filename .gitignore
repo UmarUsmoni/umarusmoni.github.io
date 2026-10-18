@@ -1,1 +1,13 @@
 .od-skills/
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.qa/
+.env
+.env.*
+!.env.example
+/.omo/
+/.opencode/
+/.omnirush/
+node_modules/
