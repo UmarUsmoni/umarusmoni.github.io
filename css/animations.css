@@ -1,112 +1,7 @@
-/* ============================================================
-   ANIMATIONS.CSS — Keyframes, Scroll Reveal & Motion Utilities
-   Umar Usmoni · Cybersecurity Portfolio
-   ============================================================ */
-
-/* ─────────────────────────────────────────────────────────────
-   1. @keyframes — SHIMMER
-   Holographic text sweep: transparent → green → cyan → transparent
-   ───────────────────────────────────────────────────────────── */
-@keyframes shimmer {
-  0% {
-    background-position: 200% center;
-  }
-  100% {
-    background-position: -200% center;
-  }
-}
-
-/* ─────────────────────────────────────────────────────────────
-   2. @keyframes — GLITCH
-   Translate + skew jitter with color-shifted text-shadows
-   ───────────────────────────────────────────────────────────── */
-@keyframes glitch {
-  0%  { transform: translate(0); }
-  2%  { transform: translate(2px, -1px) skew(-1deg); text-shadow: -2px 0 #00ff88, 2px 0 #14b8a6; }
-  4%  { transform: translate(-2px, 1px) skew(0.5deg); text-shadow: 2px 0 #00ff88, -2px 0 #14b8a6; }
-  6%  { transform: translate(1px, 1px) skew(-0.5deg); text-shadow: -1px 0 #14b8a6, 1px 0 #00ff88; }
-  8%  { transform: translate(-1px, -2px) skew(1deg); text-shadow: 2px 0 #14b8a6, -2px 0 #00ff88; }
-  10% { transform: translate(0); text-shadow: none; }
-  /* Idle for the remaining 90% — glitch fires ~0.5s every 5s */
-  100% { transform: translate(0); text-shadow: none; }
-}
-
-/* ─────────────────────────────────────────────────────────────
-   3. @keyframes — FLOAT
-   Gentle levitation: 0 → -20px → 0
-   ───────────────────────────────────────────────────────────── */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-/* ─────────────────────────────────────────────────────────────
-   4. @keyframes — PULSE-GLOW
-   Box-shadow breathing: dim → bright → dim
-   ───────────────────────────────────────────────────────────── */
-@keyframes pulse-glow {
-  0%, 100% {
-    box-shadow: 0 0 5px rgba(0, 255, 136, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(0, 255, 136, 0.6),
-                0 0 40px rgba(0, 255, 136, 0.2);
-  }
-}
-
-/* ─────────────────────────────────────────────────────────────
-   5. @keyframes — TYPING-CURSOR
-   Terminal blinking cursor
-   ───────────────────────────────────────────────────────────── */
-@keyframes typing-cursor {
-  0%, 100% {
-    border-color: var(--accent-primary);
-    opacity: 1;
-  }
-  50% {
-    border-color: transparent;
-    opacity: 0;
-  }
-}
-
-/* ─────────────────────────────────────────────────────────────
-   6. @keyframes — BOUNCE-SCROLL
-   Scroll indicator bounce
-   ───────────────────────────────────────────────────────────── */
-@keyframes bounce-scroll {
-  0%, 100% {
-    transform: translateY(0) translateX(-50%);
-  }
-  50% {
-    transform: translateY(10px) translateX(-50%);
-  }
-}
-
-/* ─────────────────────────────────────────────────────────────
-   7. @keyframes — ROTATE-BORDER
-   Conic gradient spin (featured project border)
-   ───────────────────────────────────────────────────────────── */
-@keyframes rotate-border {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-/* ─────────────────────────────────────────────────────────────
-   8. @keyframes — FADE-IN-UP
-   Entrance: slide up from 30px below + fade in
-   ───────────────────────────────────────────────────────────── */
-@keyframes fade-in-up {
+@keyframes page-rise {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -114,236 +9,30 @@
   }
 }
 
-/* ─────────────────────────────────────────────────────────────
-   9. @keyframes — FADE-IN-LEFT
-   Entrance: slide in from 30px left + fade in
-   ───────────────────────────────────────────────────────────── */
-@keyframes fade-in-left {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+.hero-copy,
+.hero-proof,
+.hero-footline {
+  animation: page-rise 700ms var(--ease-out) both;
 }
 
-/* ─────────────────────────────────────────────────────────────
-   10. @keyframes — SCALE-IN
-   Entrance: scale from 0.8 + fade in
-   ───────────────────────────────────────────────────────────── */
-@keyframes scale-in {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+.hero-proof {
+  animation-delay: 100ms;
 }
 
-/* ─────────────────────────────────────────────────────────────
-   11. @keyframes — GLOW-LINE
-   Accent underline sweep for section titles
-   ───────────────────────────────────────────────────────────── */
-@keyframes glow-line {
-  0% {
-    width: 0;
-    opacity: 0;
-  }
-  100% {
-    width: 60px;
-    opacity: 1;
-  }
+.hero-footline {
+  animation-delay: 180ms;
 }
 
-/* ─────────────────────────────────────────────────────────────
-   12. @keyframes — MATRIX-RAIN (Optional ambient effect)
-   ───────────────────────────────────────────────────────────── */
-@keyframes matrix-rain {
-  0% {
-    transform: translateY(-100%);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100vh);
-    opacity: 0;
-  }
+.panel,
+.capability-card,
+.certificate-card {
+  transition-property: border-color, background, transform, box-shadow;
 }
 
-/* ─────────────────────────────────────────────────────────────
-   SCROLL REVEAL
-   Applied via JS IntersectionObserver — toggling `.revealed`
-   ───────────────────────────────────────────────────────────── */
-.scroll-reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.scroll-reveal.revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Stagger children (add via data-delay or nth-child) */
-.scroll-reveal[data-delay="1"] { transition-delay: 0.1s; }
-.scroll-reveal[data-delay="2"] { transition-delay: 0.2s; }
-.scroll-reveal[data-delay="3"] { transition-delay: 0.3s; }
-.scroll-reveal[data-delay="4"] { transition-delay: 0.4s; }
-.scroll-reveal[data-delay="5"] { transition-delay: 0.5s; }
-.scroll-reveal[data-delay="6"] { transition-delay: 0.6s; }
-.scroll-reveal[data-delay="7"] { transition-delay: 0.7s; }
-.scroll-reveal[data-delay="8"] { transition-delay: 0.8s; }
-.scroll-reveal[data-delay="9"] { transition-delay: 0.9s; }
-
-/* Directional variants */
-.scroll-reveal.from-left {
-  transform: translateX(-30px);
-}
-.scroll-reveal.from-left.revealed {
-  transform: translateX(0);
-}
-
-.scroll-reveal.from-right {
-  transform: translateX(30px);
-}
-.scroll-reveal.from-right.revealed {
-  transform: translateX(0);
-}
-
-.scroll-reveal.from-scale {
-  transform: scale(0.85);
-}
-.scroll-reveal.from-scale.revealed {
-  transform: scale(1);
-}
-
-/* ─────────────────────────────────────────────────────────────
-   SHIMMER TEXT
-   Applies the shimmer animation to text via background-clip
-   ───────────────────────────────────────────────────────────── */
-.shimmer-text {
-  background: linear-gradient(
-    120deg,
-    var(--text-primary) 0%,
-    var(--text-primary) 30%,
-    var(--accent-primary) 45%,
-    var(--accent-teal) 55%,
-    var(--text-primary) 70%,
-    var(--text-primary) 100%
-  );
-  background-size: 300% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shimmer 3s linear infinite;
-}
-
-/* ─────────────────────────────────────────────────────────────
-   GLITCH TEXT
-   Applies glitch animation — fires every 5s
-   ───────────────────────────────────────────────────────────── */
-.glitch-text {
-  position: relative;
-  animation: glitch 5s ease-in-out infinite;
-}
-
-/* Optional pseudo-element glitch layers for deeper effect */
-.glitch-text::before,
-.glitch-text::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.glitch-text::before {
-  color: #00ff88;
-  z-index: -1;
-  animation: glitch 5s ease-in-out infinite reverse;
-  clip-path: inset(0 0 60% 0);
-}
-
-.glitch-text::after {
-  color: #14b8a6;
-  z-index: -2;
-  animation: glitch 5s ease-in-out infinite 0.15s;
-  clip-path: inset(40% 0 0 0);
-}
-
-/* ─────────────────────────────────────────────────────────────
-   FLOAT UTILITY
-   ───────────────────────────────────────────────────────────── */
-.float {
-  animation: float 6s ease-in-out infinite;
-}
-
-/* ─────────────────────────────────────────────────────────────
-   ENTRANCE ANIMATION UTILITIES
-   Apply these classes for one-shot entrance animations
-   ───────────────────────────────────────────────────────────── */
-.animate-fade-in-up {
-  animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.animate-fade-in-left {
-  animation: fade-in-left 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.animate-scale-in {
-  animation: scale-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-/* Delay modifiers for entrance animations */
-.delay-100 { animation-delay: 0.1s; }
-.delay-200 { animation-delay: 0.2s; }
-.delay-300 { animation-delay: 0.3s; }
-.delay-400 { animation-delay: 0.4s; }
-.delay-500 { animation-delay: 0.5s; }
-.delay-600 { animation-delay: 0.6s; }
-.delay-700 { animation-delay: 0.7s; }
-.delay-800 { animation-delay: 0.8s; }
-
-/* ─────────────────────────────────────────────────────────────
-   ACCESSIBILITY — Reduced Motion
-   Disables ALL animations and transitions for users who prefer
-   reduced motion in their OS/browser settings.
-   ───────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-
-  .scroll-reveal {
-    opacity: 1;
-    transform: none;
-  }
-
-  .shimmer-text {
-    animation: none;
-    -webkit-text-fill-color: var(--text-primary);
-  }
-
-  .glitch-text,
-  .glitch-text::before,
-  .glitch-text::after {
-    animation: none;
-    text-shadow: none;
-  }
-
-  .float {
+  .hero-copy,
+  .hero-proof,
+  .hero-footline {
     animation: none;
   }
 }
