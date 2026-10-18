@@ -152,13 +152,12 @@
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  overflow: auto;
+  flex-wrap: wrap;
   color: var(--color-subtle);
   font-family: var(--font-mono);
   font-size: var(--size-xs);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  white-space: nowrap;
 }
 
 .proof-strip-inner span:nth-child(3),
@@ -770,7 +769,8 @@
 
   .proof-strip-inner {
     justify-content: flex-start;
-    padding-block: 10px;
+    gap: 8px 16px;
+    padding-block: 14px;
   }
 
   .project-grid,
