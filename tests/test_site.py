@@ -57,7 +57,7 @@ def test_new_tab_links_are_safe(site_page: SitePage) -> None:
 
 def test_contact_paths_are_direct(site_page: SitePage) -> None:
     page = site_page.page
-    assert page.locator('a[href^="mailto:"]').count() == 1
+    assert page.locator('a[href="mailto:zunur007@gmail.com"]').count() >= 1
     assert page.locator('a[href="https://t.me/cloudety"]').count() == 1
     assert page.locator('a[href^="https://www.linkedin.com/"]').count() == 1
     assert page.locator("form").count() == 0
