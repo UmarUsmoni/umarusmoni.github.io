@@ -126,3 +126,21 @@ def test_fake_security_claims_are_absent(site_page: SitePage) -> None:
         "fake telemetry",
     )
     assert [phrase for phrase in banned if phrase in body] == []
+
+
+def test_hero_3d_canvas_and_controls(site_page: SitePage) -> None:
+    page = site_page.page
+    canvas = page.locator("#hero-3d-canvas")
+    assert canvas.count() == 1
+    wireframe_btn = page.locator("#hud-btn-wireframe")
+    scan_btn = page.locator("#hud-btn-scan")
+    reset_btn = page.locator("#hud-btn-reset")
+    assert wireframe_btn.count() == 1
+    assert scan_btn.count() == 1
+    assert reset_btn.count() == 1
+
+    wireframe_btn.click()
+    assert "active" in (wireframe_btn.get_attribute("class") or "")
+    wireframe_btn.click()
+    assert "active" not in (wireframe_btn.get_attribute("class") or "")
+

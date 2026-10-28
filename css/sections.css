@@ -9,9 +9,179 @@
 
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.65fr);
+  grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
   align-items: center;
-  gap: clamp(48px, 9vw, 144px);
+  gap: clamp(36px, 6vw, 96px);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   3D HERO SENTINEL DRONE & HUD
+   ───────────────────────────────────────────────────────────── */
+.hero-3d-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  margin: 0 auto;
+}
+
+.hero-3d-meta {
+  margin-top: var(--space-3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  color: var(--color-subtle);
+}
+
+.hero-3d-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  min-height: 360px;
+  border-radius: var(--radius-panel, 16px);
+  background: radial-gradient(circle at 50% 50%, rgba(0, 255, 136, 0.08), rgba(11, 15, 13, 0.95) 75%);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 25%, var(--color-border));
+  overflow: hidden;
+  box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.7), inset 0 0 24px rgba(0, 255, 136, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  touch-action: none;
+}
+
+.hero-3d-container:active {
+  cursor: grabbing;
+}
+
+.hero-3d-canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* Cyber Loading Spinner */
+.drone-loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: rgba(11, 15, 13, 0.85);
+  backdrop-filter: blur(8px);
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  z-index: 10;
+  transition: opacity 0.3s ease;
+}
+
+.drone-spinner {
+  width: 32px;
+  height: 32px;
+  border: 2px solid rgba(0, 255, 136, 0.2);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* 3D Cyber HUD Overlay */
+.hero-3d-hud {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(14px, 2.5vw, 20px);
+}
+
+.hud-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.hud-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(11, 15, 13, 0.75);
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--color-accent);
+  backdrop-filter: blur(6px);
+}
+
+.hud-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 8px var(--color-accent);
+  animation: pulse-hud 1.8s infinite;
+}
+
+.hud-coords {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--color-subtle);
+  background: rgba(11, 15, 13, 0.65);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.hud-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: auto;
+  flex-wrap: wrap;
+}
+
+.hud-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(11, 15, 13, 0.8);
+  border: 1px solid rgba(0, 255, 136, 0.25);
+  color: var(--color-text);
+  padding: 6px 12px;
+  border-radius: 9999px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(6px);
+}
+
+.hud-btn:hover {
+  background: rgba(0, 255, 136, 0.15);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  transform: translateY(-1px);
+}
+
+.hud-btn.active {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #050505;
+  font-weight: 600;
+  box-shadow: 0 0 14px rgba(0, 255, 136, 0.4);
+}
+
+@keyframes pulse-hud {
+  0% { transform: scale(0.9); opacity: 0.7; }
+  50% { transform: scale(1.4); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.7; }
 }
 
 .hero-copy {
