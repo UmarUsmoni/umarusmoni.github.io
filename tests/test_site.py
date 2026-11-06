@@ -95,7 +95,7 @@ def test_certificate_dialog_keyboard_flow(site_page: SitePage) -> None:
     assert not dialog.is_visible()
 
 
-@pytest.mark.parametrize("width", [390, 768, 1024, 1440])
+@pytest.mark.parametrize("width", [390, 768, 1024, 1440, 1920])
 def test_no_horizontal_overflow(site_page: SitePage, width: int) -> None:
     page = site_page.page
     page.set_viewport_size({"width": width, "height": 900})
@@ -143,4 +143,54 @@ def test_hero_3d_canvas_and_controls(site_page: SitePage) -> None:
     assert "active" in (wireframe_btn.get_attribute("class") or "")
     wireframe_btn.click()
     assert "active" not in (wireframe_btn.get_attribute("class") or "")
+
+
+def test_hero_fits_desktop_viewport_and_names_author(site_page: SitePage) -> None:
+    page = site_page.page
+    page.set_viewport_size({"width": 1440, "height": 960})
+    hero_text = page.locator("#hero").inner_text().lower()
+    assert "umar usmoni" in hero_text
+
+    buttons = page.locator(".hero-actions .button")
+    assert buttons.count() >= 2
+    for idx in range(buttons.count()):
+        box = buttons.nth(idx).bounding_box()
+        assert box is not None
+        assert box["y"] + box["height"] <= 940
+
+
+def test_theme_toggle_and_44px_interactive_targets(site_page: SitePage) -> None:
+    page = site_page.page
+    theme_toggle = page.locator("#theme-toggle")
+    assert theme_toggle.count() == 1
+
+    for selector in ("#theme-toggle", "#hud-btn-wireframe", "#hud-btn-scan", "#hud-btn-reset"):
+        box = page.locator(selector).bounding_box()
+        assert box is not None
+        assert box["height"] >= 44, f"{selector} height {box['height']} < 44px"
+
+    theme_toggle.click()
+    first_theme = page.evaluate("document.documentElement.dataset.theme")
+    assert first_theme in ("light", "dark")
+    if first_theme == "dark":
+        theme_toggle.click()
+    assert page.evaluate("document.documentElement.dataset.theme") == "light"
+
+    contrast_ratio = page.locator("#hud-btn-wireframe").evaluate(
+        """el => {
+            const parse = (rgb) => rgb.match(/[\\d.]+/g).slice(0, 3).map(Number);
+            const lum = ([r, g, b]) => {
+                const f = (c) => {
+                    const s = c / 255;
+                    return s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
+                };
+                return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b);
+            };
+            const style = getComputedStyle(el);
+            const l1 = lum(parse(style.color));
+            const l2 = lum(parse(style.backgroundColor));
+            return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+        }"""
+    )
+    assert contrast_ratio >= 4.5, f"Light-mode HUD button contrast too low: {contrast_ratio:.2f}"
 

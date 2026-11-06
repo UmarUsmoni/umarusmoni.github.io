@@ -21,6 +21,8 @@
   <meta name="twitter:description" content="Responsive frontend work, digital projects, and AI media integration from Khujand, Tajikistan." />
   <meta name="twitter:image" content="assets/og-image.svg" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preload" href="assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="css/index.css" />
   <link rel="stylesheet" href="css/components.css" />
   <link rel="stylesheet" href="css/sections.css" />
@@ -77,19 +79,34 @@
     <div class="container nav-shell">
       <a class="brand" href="#hero" aria-label="Umar Usmoni home">
         <span class="brand-mark" aria-hidden="true">UU</span>
-        <span class="brand-name">Umar Usmoni</span>
+        <span class="brand-text">
+          <span class="brand-name">Umar Usmoni</span>
+          <span class="brand-role">Frontend · Khujand</span>
+        </span>
       </a>
       <nav class="desktop-nav" aria-label="Primary navigation">
         <a href="#about">About</a>
         <a href="#projects">Selected work</a>
         <a href="#skills">Capabilities</a>
+        <a href="#experience">Experience</a>
         <a href="#certificates">Proof</a>
-        <a href="#contact" class="nav-cta">Let's talk <span aria-hidden="true">↗</span></a>
       </nav>
-      <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </button>
+      <div class="header-actions">
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="false" title="Switch theme">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+          </svg>
+        </button>
+        <a href="#contact" class="nav-cta">Let's talk <span aria-hidden="true">↗</span></a>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -104,6 +121,7 @@
         <a href="#about">About <span aria-hidden="true">↗</span></a>
         <a href="#projects">Selected work <span aria-hidden="true">↗</span></a>
         <a href="#skills">Capabilities <span aria-hidden="true">↗</span></a>
+        <a href="#experience">Experience <span aria-hidden="true">↗</span></a>
         <a href="#certificates">Proof <span aria-hidden="true">↗</span></a>
         <a href="#contact">Let's talk <span aria-hidden="true">↗</span></a>
       </nav>
@@ -115,9 +133,12 @@
     <section class="hero section-frame" id="hero" aria-labelledby="hero-title">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow eyebrow-status"><span class="status-dot" aria-hidden="true"></span> Available for frontend &amp; digital projects</p>
-          <h1 id="hero-title">Junior Frontend <span>/ Web Developer</span></h1>
-          <p class="hero-lead">I turn complex ideas into clear, responsive interfaces — with a practical eye for content, media, and the people using the product.</p>
+          <div class="hero-identity">
+            <p class="eyebrow eyebrow-status"><span class="status-dot" aria-hidden="true"></span> Available for frontend &amp; digital projects</p>
+          </div>
+          <p class="hero-name-kicker">Umar Usmoni <span>· Portfolio 2026</span></p>
+          <h1 id="hero-title">Junior Frontend <span>/ Web Developer.</span></h1>
+          <p class="hero-lead">I turn complex archives, multilingual content, and AI media into calm, responsive web interfaces built for everyday devices.</p>
           <div class="hero-actions">
             <a class="button button-primary" href="#projects">See selected work <span aria-hidden="true">↘</span></a>
             <a class="button button-quiet" href="mailto:zunur007@gmail.com">Start a conversation <span aria-hidden="true">↗</span></a>
@@ -126,45 +147,47 @@
             <span>Khujand, Tajikistan</span>
             <span aria-hidden="true">·</span>
             <span>Office / hybrid / remote</span>
+            <span aria-hidden="true">·</span>
+            <span>2+ yrs freelance</span>
           </div>
         </div>
-        <div class="hero-3d-wrapper" aria-label="Interactive 3D Sentinel Drone">
-          <div class="hero-3d-container panel" id="hero-3d-container">
-            <div class="drone-loader" id="drone-loader" aria-hidden="true">
-              <span class="drone-spinner"></span>
-              <span>Loading 3D Sentinel...</span>
+        <div class="hero-3d-wrapper" aria-label="Interactive 3D WebGL Studio">
+          <div class="hero-3d-card panel">
+            <div class="hud-topline">
+              <span class="hud-tag"><span class="hud-pulse-dot" aria-hidden="true"></span> <span id="hud-status-text">STUDIO · INITIALIZING</span></span>
+              <span class="hud-coords">WebGL · Interactive 3D</span>
             </div>
-            <canvas id="hero-3d-canvas" class="hero-3d-canvas" aria-label="Interactive 3D Drone Model Canvas"></canvas>
-            <div class="hero-3d-hud">
-              <div class="hud-topline">
-                <span class="hud-tag"><span class="hud-pulse-dot"></span> <span id="hud-status-text">INITIALIZING...</span></span>
-                <span class="hud-coords">3D · Scenario Labs</span>
+            <div class="hero-3d-container" id="hero-3d-container">
+              <div class="drone-loader" id="drone-loader" aria-hidden="true">
+                <span class="drone-spinner"></span>
+                <span>Loading 3D mesh…</span>
               </div>
-              <div class="hud-controls" role="group" aria-label="3D Model controls">
-                <button type="button" class="hud-btn" id="hud-btn-wireframe" title="Toggle Wireframe mode">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line></svg>
-                  <span>Wireframe</span>
-                </button>
-                <button type="button" class="hud-btn" id="hud-btn-scan" title="Trigger scan pulse">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a10 10 0 0 1 10 10"></path></svg>
-                  <span>Scan</span>
-                </button>
-                <button type="button" class="hud-btn" id="hud-btn-reset" title="Reset camera">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
-                  <span>Reset</span>
-                </button>
-              </div>
+              <canvas id="hero-3d-canvas" class="hero-3d-canvas" aria-label="Interactive 3D exploration rover model"></canvas>
+            </div>
+            <div class="hud-controls" role="group" aria-label="3D viewport controls">
+              <button type="button" class="hud-btn" id="hud-btn-wireframe" aria-pressed="false" title="Toggle wireframe mesh">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line></svg>
+                <span>Wireframe</span>
+              </button>
+              <button type="button" class="hud-btn" id="hud-btn-scan" title="Sweep studio key light">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2"></path></svg>
+                <span>Key light</span>
+              </button>
+              <button type="button" class="hud-btn" id="hud-btn-reset" title="Reset camera view">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
+                <span>Reset view</span>
+              </button>
             </div>
           </div>
           <div class="hero-3d-meta">
-            <span>Interactive 3D · Drag to rotate</span>
-            <a class="text-link" href="https://khujand-museum.com" target="_blank" rel="noopener noreferrer">Featured project: Khujand Museum <span aria-hidden="true">↗</span></a>
+            <span>Drag to orbit · Scenario Labs GLB</span>
+            <a class="text-link" href="https://khujand-museum.com" target="_blank" rel="noopener noreferrer">Featured: Khujand Museum <span aria-hidden="true">↗</span></a>
           </div>
         </div>
       </div>
       <div class="container hero-footline">
         <span class="eyebrow">Selected signal</span>
-        <p>Frontend implementation, content structure, and digital delivery in one practical workflow.</p>
+        <p>Frontend implementation, multilingual content architecture, and AI media delivery in one workflow.</p>
         <span class="hero-scroll" aria-hidden="true">Scroll to explore ↓</span>
       </div>
     </section>

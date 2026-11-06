@@ -1,30 +1,61 @@
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("../assets/fonts/space-grotesk-latin.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("../assets/fonts/plus-jakarta-sans-latin.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("../assets/fonts/jetbrains-mono-latin.woff2") format("woff2");
+  font-weight: 400 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   color-scheme: dark;
-  --color-ink: #0b0f0d;
-  --color-ink-soft: #101612;
-  --color-surface: #121a15;
-  --color-surface-raised: #19231c;
-  --color-text: #f3f0e8;
-  --color-muted: #a4ada3;
-  --color-subtle: #717b73;
-  --color-accent: #c7f36b;
-  --color-accent-strong: #d9ff83;
-  --color-teal: #77c9ad;
-  --color-line: rgba(195, 213, 197, 0.14);
-  --color-line-strong: rgba(199, 243, 107, 0.45);
-  --color-focus: #e5ff9d;
-  --shadow-panel: 0 24px 80px rgba(0, 0, 0, 0.18);
-  --shadow-accent: 0 16px 50px rgba(199, 243, 107, 0.11);
-  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-display: "Arial Narrow", Inter, ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-  --size-xs: 0.72rem;
-  --size-sm: 0.84rem;
+  --color-ink: light-dark(#f5f6ef, #0a0e0c);
+  --color-ink-soft: light-dark(#ebf0e4, #0f1512);
+  --color-surface: light-dark(#ffffff, #131b16);
+  --color-surface-raised: light-dark(#edf2e7, #1a251e);
+  --color-surface-elevated: light-dark(#e3eadc, #212f26);
+  --color-text: light-dark(#141e17, #f4f1ea);
+  --color-muted: light-dark(#445448, #a7b1a7);
+  --color-subtle: light-dark(#5d6d61, #78847a);
+  --color-accent: light-dark(#3b6412, #c7f36b);
+  --color-accent-strong: light-dark(#2c4d0b, #daff87);
+  --color-accent-soft: light-dark(rgba(59, 100, 18, 0.1), rgba(199, 243, 107, 0.11));
+  --color-on-accent: light-dark(#f7f9f2, #0a0e0c);
+  --color-teal: light-dark(#146b57, #77c9ad);
+  --color-line: light-dark(rgba(22, 46, 29, 0.14), rgba(196, 214, 198, 0.13));
+  --color-line-strong: light-dark(rgba(59, 100, 18, 0.42), rgba(199, 243, 107, 0.44));
+  --color-highlight: light-dark(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.05));
+  --color-header-bg: light-dark(rgba(245, 246, 239, 0.84), rgba(10, 14, 12, 0.8));
+  --color-stage-bg: light-dark(#e8efe2, #0d1410);
+  --color-stage-glow: light-dark(rgba(59, 100, 18, 0.12), rgba(199, 243, 107, 0.11));
+  --color-focus: light-dark(#27490a, #e5ff9d);
+  --shadow-panel: 0 24px 64px light-dark(rgba(22, 46, 29, 0.08), rgba(0, 0, 0, 0.34));
+  --shadow-accent: 0 14px 40px light-dark(rgba(59, 100, 18, 0.16), rgba(199, 243, 107, 0.14));
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Space Grotesk", "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+  --size-xs: 0.75rem;
+  --size-sm: 0.875rem;
   --size-body: 1rem;
-  --size-lede: clamp(1.1rem, 1.3vw, 1.35rem);
-  --size-h1: clamp(3.65rem, 9.2vw, 9.6rem);
-  --size-h2: clamp(2.55rem, 5.5vw, 6rem);
-  --size-h3: clamp(1.35rem, 2.2vw, 2rem);
+  --size-lede: clamp(1.05rem, 1.2vw, 1.24rem);
+  --size-h1: clamp(2.65rem, 4.8vw, 4.5rem);
+  --size-h2: clamp(2.1rem, 3.9vw, 3.55rem);
+  --size-h3: clamp(1.28rem, 1.85vw, 1.72rem);
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -47,24 +78,17 @@
 }
 
 @media (prefers-color-scheme: light) {
-  :root {
+  :root:not([data-theme="dark"]) {
     color-scheme: light;
-    --color-ink: #f4f5ee;
-    --color-ink-soft: #e8eee2;
-    --color-surface: #ffffff;
-    --color-surface-raised: #eef3e9;
-    --color-text: #172019;
-    --color-muted: #4c5b50;
-    --color-subtle: #68766b;
-    --color-accent: #436d17;
-    --color-accent-strong: #365a10;
-    --color-teal: #16715d;
-    --color-line: rgba(25, 52, 33, 0.16);
-    --color-line-strong: rgba(54, 90, 16, 0.45);
-    --color-focus: #27490a;
-    --shadow-panel: 0 24px 80px rgba(30, 62, 36, 0.1);
-    --shadow-accent: 0 16px 50px rgba(67, 109, 23, 0.12);
   }
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
 }
 
 *,
@@ -89,13 +113,16 @@ body {
   line-height: 1.65;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body::before {
   position: fixed;
   inset: 0;
   z-index: -2;
-  background: radial-gradient(circle at 80% 10%, rgba(119, 201, 173, 0.08), transparent 32rem), radial-gradient(circle at 10% 30%, rgba(199, 243, 107, 0.05), transparent 28rem);
+  background:
+    radial-gradient(circle at 82% 8%, light-dark(rgba(20, 107, 87, 0.08), rgba(119, 201, 173, 0.09)), transparent 34rem),
+    radial-gradient(circle at 12% 24%, light-dark(rgba(59, 100, 18, 0.07), rgba(199, 243, 107, 0.06)), transparent 30rem);
   content: "";
   pointer-events: none;
 }
@@ -107,7 +134,7 @@ body::after {
   background-image: linear-gradient(to right, transparent 0, transparent calc(100% - 1px), var(--color-line) 100%);
   background-size: 25% 100%;
   content: "";
-  opacity: 0.2;
+  opacity: 0.16;
   pointer-events: none;
 }
 
@@ -156,8 +183,9 @@ h2,
 h3 {
   font-family: var(--font-display);
   font-weight: 700;
-  letter-spacing: -0.055em;
-  line-height: 0.98;
+  letter-spacing: -0.032em;
+  line-height: 1.04;
+  text-wrap: balance;
 }
 
 ul {
@@ -167,12 +195,12 @@ ul {
 
 ::selection {
   background: var(--color-accent);
-  color: var(--color-ink);
+  color: var(--color-on-accent);
 }
 
 :focus-visible {
   outline: 2px solid var(--color-focus);
-  outline-offset: 4px;
+  outline-offset: 3px;
 }
 
 .container {
@@ -182,12 +210,17 @@ ul {
 
 .section-frame {
   position: relative;
-  padding-block: clamp(88px, 12vw, 168px);
-  scroll-margin-top: 88px;
+  padding-block: clamp(80px, 10vw, 140px);
+  scroll-margin-top: 84px;
 }
 
 .section-frame-soft {
-  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.018) 50%, transparent);
+  background: linear-gradient(
+    180deg,
+    transparent,
+    light-dark(rgba(22, 46, 29, 0.028), rgba(255, 255, 255, 0.02)) 50%,
+    transparent
+  );
 }
 
 .skip-link {
@@ -198,7 +231,7 @@ ul {
   padding: 10px 16px;
   border-radius: var(--radius-sm);
   background: var(--color-accent);
-  color: var(--color-ink);
+  color: var(--color-on-accent);
   font-size: var(--size-sm);
   font-weight: 700;
   transform: translateY(-160%);
@@ -213,8 +246,8 @@ ul {
   color: var(--color-subtle);
   font-family: var(--font-mono);
   font-size: var(--size-xs);
-  font-weight: 600;
-  letter-spacing: 0.11em;
+  font-weight: 500;
+  letter-spacing: 0.08em;
   line-height: 1.4;
   text-transform: uppercase;
 }
