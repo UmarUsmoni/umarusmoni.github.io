@@ -1,22 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
-  <defs>
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="2" result="blur" />
-      <feMerge>
-        <feMergeNode in="blur" />
-        <feMergeNode in="SourceGraphic" />
-      </feMerge>
-    </filter>
-  </defs>
-  <rect width="64" height="64" rx="12" fill="transparent" />
-  <text
-    x="32"
-    y="42"
-    text-anchor="middle"
-    font-family="'Space Grotesk', sans-serif"
-    font-weight="800"
-    font-size="28"
-    fill="#00ff88"
-    filter="url(#glow)"
-  >UU</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Umar Usmoni monogram">
+  <rect width="64" height="64" rx="14" fill="#0a0e0c" />
+  <rect x="2" y="2" width="60" height="60" rx="12" fill="none" stroke="#c7f36b" stroke-opacity="0.42" stroke-width="1.5" />
+  <circle cx="51" cy="13" r="3.5" fill="#77c9ad" />
+  <text x="31" y="41" text-anchor="middle" font-family="ui-monospace, monospace" font-weight="700" font-size="25" letter-spacing="-1.5" fill="#c7f36b">UU</text>
 </svg>

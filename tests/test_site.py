@@ -194,3 +194,73 @@ def test_theme_toggle_and_44px_interactive_targets(site_page: SitePage) -> None:
     )
     assert contrast_ratio >= 4.5, f"Light-mode HUD button contrast too low: {contrast_ratio:.2f}"
 
+
+def test_interactive_museum_hall_preview(site_page: SitePage) -> None:
+    page = site_page.page
+    triggers = page.locator("[data-hall-trigger]")
+    assert triggers.count() == 3
+    for idx in range(triggers.count()):
+        box = triggers.nth(idx).bounding_box()
+        assert box is not None
+        assert box["height"] >= 44
+
+    initial_title = page.locator("#museum-hall-title").inner_text()
+    assert "is-active" in (page.locator('[data-route-stop="01"]').get_attribute("class") or "")
+    second = triggers.nth(1)
+    second.click()
+    assert second.get_attribute("aria-pressed") == "true"
+    assert triggers.nth(0).get_attribute("aria-pressed") == "false"
+    assert page.locator("#museum-hall-title").inner_text() != initial_title
+    assert "is-active" in (page.locator('[data-route-stop="05"]').get_attribute("class") or "")
+    assert "is-active" not in (page.locator('[data-route-stop="01"]').get_attribute("class") or "")
+
+
+def test_mobile_header_single_line_typography(site_page: SitePage) -> None:
+    page = site_page.page
+    page.set_viewport_size({"width": 390, "height": 844})
+    line_count_js = """el => {
+        const range = document.createRange();
+        range.selectNodeContents(el);
+        const tops = Array.from(range.getClientRects())
+            .filter(r => r.width > 1 && r.height > 1)
+            .map(r => Math.round(r.top / 4));
+        return new Set(tops).size;
+    }"""
+    assert page.locator(".brand-name").evaluate(line_count_js) == 1
+    assert page.locator(".site-header .nav-cta").evaluate(line_count_js) == 1
+
+
+def test_certificate_dialog_carousel_and_verification_link(site_page: SitePage) -> None:
+    page = site_page.page
+    page.locator("[data-certificate-trigger]").first.click()
+    dialog = page.locator("#certificate-dialog")
+    assert dialog.is_visible()
+
+    verify_link = page.locator("#certificate-dialog-verify")
+    href = verify_link.get_attribute("href") or ""
+    rel = verify_link.get_attribute("rel") or ""
+    assert href.startswith("https://learn.deeplearning.ai/certificates/")
+    assert "noopener" in rel and "noreferrer" in rel
+
+    first_caption = page.locator("#certificate-dialog-caption").inner_text()
+    page.locator("#certificate-dialog-next").click()
+    second_caption = page.locator("#certificate-dialog-caption").inner_text()
+    assert second_caption != first_caption
+
+    page.keyboard.press("ArrowLeft")
+    assert page.locator("#certificate-dialog-caption").inner_text() == first_caption
+    page.keyboard.press("Escape")
+    assert not dialog.is_visible()
+
+
+def test_copy_email_button_accessible_feedback(site_page: SitePage) -> None:
+    page = site_page.page
+    copy_btn = page.locator("#copy-email-btn")
+    assert copy_btn.count() == 1
+    box = copy_btn.bounding_box()
+    assert box is not None and box["height"] >= 44
+
+    copy_btn.click()
+    assert "Copied" in copy_btn.inner_text()
+    assert "copied" in page.locator("#copy-email-status").inner_text().lower()
+

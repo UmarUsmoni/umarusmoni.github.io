@@ -186,7 +186,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 6. Interactive Museum Case-Study Preview
   if (hallTriggers.length) {
+    const routeStops = document.querySelectorAll('[data-route-stop]');
     const activateHall = (trigger) => {
+      const code = trigger.dataset.hallCode;
       const title = trigger.dataset.hallTitle;
       const era = trigger.dataset.hallEra;
       const detail = trigger.dataset.hallDetail;
@@ -195,6 +197,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const active = btn === trigger;
         btn.classList.toggle('is-active', active);
         btn.setAttribute('aria-pressed', String(active));
+      });
+      routeStops.forEach((stop) => {
+        stop.classList.toggle('is-active', stop.dataset.routeStop === code);
       });
       if (hallTitleEl && title) hallTitleEl.textContent = title;
       if (hallEraEl && era) hallEraEl.textContent = era;
@@ -223,7 +228,8 @@ document.addEventListener('DOMContentLoaded', () => {
     certificateDialogImage.alt = `${caption} certificate preview`;
     certificateDialogCaption.textContent = caption;
     if (certificateDialogMeta) {
-      certificateDialogMeta.textContent = meta || `Credential ${currentCertificateIndex + 1} of ${total}`;
+      const position = `${currentCertificateIndex + 1} / ${total}`;
+      certificateDialogMeta.textContent = meta ? `${position} · ${meta}` : `Credential ${position}`;
     }
     if (certificateDialogVerify && verifyUrl) {
       certificateDialogVerify.href = verifyUrl;
@@ -273,18 +279,27 @@ document.addEventListener('DOMContentLoaded', () => {
   // 8. Copy Direct Email Button
   if (copyEmailBtn) {
     let copyTimer = 0;
-    copyEmailBtn.addEventListener('click', async () => {
-      const address = copyEmailBtn.dataset.email || 'zunur007@gmail.com';
-      const labelEl = copyEmailBtn.querySelector('span');
+    const fallbackCopy = (value) => {
+      const textarea = document.createElement('textarea');
+      textarea.value = value;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      textarea.style.pointerEvents = 'none';
+      document.body.appendChild(textarea);
+      textarea.select();
       try {
-        if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
-          await navigator.clipboard.writeText(address);
-        }
-        if (labelEl) labelEl.textContent = 'Copied email';
-        copyEmailBtn.classList.add('is-copied');
-        if (copyEmailStatus) copyEmailStatus.textContent = 'Email address copied to clipboard.';
-      } catch {
-        if (labelEl) labelEl.textContent = address;
+        return document.execCommand('copy');
+      } finally {
+        textarea.remove();
+      }
+    };
+
+    const applyCopyFeedback = (labelEl, address, copied) => {
+      if (labelEl) labelEl.textContent = copied ? 'Copied email' : address;
+      copyEmailBtn.classList.toggle('is-copied', copied);
+      if (copyEmailStatus) {
+        copyEmailStatus.textContent = copied ? 'Email address copied to clipboard.' : `Email: ${address}`;
       }
       window.clearTimeout(copyTimer);
       copyTimer = window.setTimeout(() => {
@@ -292,6 +307,27 @@ document.addEventListener('DOMContentLoaded', () => {
         copyEmailBtn.classList.remove('is-copied');
         if (copyEmailStatus) copyEmailStatus.textContent = '';
       }, 2400);
+    };
+
+    copyEmailBtn.addEventListener('click', () => {
+      const address = copyEmailBtn.dataset.email || 'zunur007@gmail.com';
+      const labelEl = copyEmailBtn.querySelector('span');
+      const syncCopied = fallbackCopy(address);
+      if (syncCopied) {
+        applyCopyFeedback(labelEl, address, true);
+      }
+      if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+        navigator.clipboard.writeText(address).then(
+          () => {
+            if (!syncCopied) applyCopyFeedback(labelEl, address, true);
+          },
+          () => {
+            if (!syncCopied) applyCopyFeedback(labelEl, address, false);
+          }
+        );
+      } else if (!syncCopied) {
+        applyCopyFeedback(labelEl, address, false);
+      }
     });
   }
 });

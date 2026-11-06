@@ -1,14 +1,26 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
   <title id="title">Umar Usmoni — Junior Frontend / Web Developer</title>
   <desc id="description">Responsive frontend work, digital projects, and AI media integration from Khujand, Tajikistan.</desc>
-  <rect width="1200" height="630" fill="#0b0f0d" />
-  <circle cx="1010" cy="-10" r="330" fill="#19231c" />
-  <circle cx="1030" cy="0" r="180" fill="#c7f36b" opacity="0.9" />
-  <path d="M0 510h1200" stroke="#39473b" stroke-width="2" />
-  <path d="M790 0v630" stroke="#39473b" stroke-width="2" opacity="0.65" />
-  <text x="84" y="118" fill="#a4ada3" font-family="monospace" font-size="24" letter-spacing="4">UMAR USMONI / PORTFOLIO</text>
-  <text x="84" y="300" fill="#f3f0e8" font-family="Arial, sans-serif" font-size="82" font-weight="700">Junior Frontend</text>
-  <text x="84" y="394" fill="#c7f36b" font-family="Arial, sans-serif" font-size="82" font-weight="700">/ Web Developer</text>
-  <text x="84" y="558" fill="#a4ada3" font-family="monospace" font-size="24">Khujand, Tajikistan · Responsive UI · AI media</text>
-  <text x="1026" y="82" fill="#0b0f0d" font-family="monospace" font-size="24" text-anchor="middle">UU</text>
+  <defs>
+    <radialGradient id="glowA" cx="84%" cy="14%" r="48%">
+      <stop offset="0%" stop-color="#c7f36b" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#0a0e0c" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="glowB" cx="18%" cy="88%" r="45%">
+      <stop offset="0%" stop-color="#77c9ad" stop-opacity="0.16" />
+      <stop offset="100%" stop-color="#0a0e0c" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#0a0e0c" />
+  <rect width="1200" height="630" fill="url(#glowA)" />
+  <rect width="1200" height="630" fill="url(#glowB)" />
+  <rect x="36" y="36" width="1128" height="558" rx="24" fill="#131b16" fill-opacity="0.65" stroke="#c7f36b" stroke-opacity="0.25" />
+  <path d="M36 498h1128" stroke="#2c3a30" stroke-width="1.5" />
+  <rect x="84" y="84" width="52" height="52" rx="12" fill="#1a251e" stroke="#c7f36b" stroke-opacity="0.55" />
+  <text x="110" y="118" text-anchor="middle" fill="#c7f36b" font-family="monospace" font-size="20" font-weight="700">UU</text>
+  <text x="156" y="117" fill="#a7b1a7" font-family="monospace" font-size="21" letter-spacing="3">UMAR USMONI · PORTFOLIO 2026</text>
+  <text x="84" y="274" fill="#f4f1ea" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="76" font-weight="700" letter-spacing="-2">Junior Frontend</text>
+  <text x="84" y="364" fill="#c7f36b" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="76" font-weight="700" letter-spacing="-2">/ Web Developer.</text>
+  <text x="84" y="432" fill="#a7b1a7" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="26">Responsive interfaces, multilingual archives &amp; practical AI media systems.</text>
+  <text x="84" y="552" fill="#77c9ad" font-family="monospace" font-size="21" letter-spacing="1.5">KHUJAND, TAJIKISTAN · HTML5 / CSS3 / JS / WEBGL · KHUJAND-MUSEUM.COM</text>
 </svg>

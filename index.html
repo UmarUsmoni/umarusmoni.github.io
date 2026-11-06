@@ -196,27 +196,31 @@
       <div class="container proof-strip-inner">
         <span>HTML5</span>
         <span>CSS3</span>
-        <span>JavaScript</span>
-        <span>UI / UX</span>
+        <span class="is-accent">JavaScript</span>
+        <span>Responsive UI / UX</span>
+        <span class="is-accent">Three.js · WebGL</span>
         <span>Git + GitHub Pages</span>
-        <span>WebP</span>
-        <span>AI media</span>
+        <span>WebP Optimisation</span>
+        <span class="is-accent">AI Media Systems</span>
       </div>
     </section>
 
     <section class="section-frame section-frame-soft" id="about" aria-labelledby="about-title">
-      <div class="container about-grid">
+      <div class="container about-grid" data-reveal>
         <div class="section-intro">
           <p class="eyebrow">01 / Approach</p>
           <h2 id="about-title">Useful first.<br /><span>Polished second.</span></h2>
         </div>
         <div class="about-copy">
-          <p class="lede">My work sits between frontend development, content structure, and digital production. I like interfaces that feel calm on the surface and thoughtful underneath.</p>
-          <p>I build from the user’s task: understand the information, shape the hierarchy, make the responsive states work, and keep the final experience light enough for everyday devices.</p>
-          <div class="about-note"><span class="note-mark" aria-hidden="true">→</span><span>Based in Khujand. Open to office, hybrid, and remote work.</span></div>
+          <p class="lede">My work sits between frontend development, content structure, and digital production. I build interfaces that feel calm on the surface and structured underneath.</p>
+          <p>Every project starts from the visitor’s task: clarify the information architecture, design legible responsive states, optimise media assets, and keep the finished page fast on everyday phones and laptops.</p>
+          <div class="about-note">
+            <span class="note-mark" aria-hidden="true">→</span>
+            <span>Based in Khujand, Tajikistan · Open to office, hybrid, and remote collaboration.</span>
+          </div>
         </div>
       </div>
-      <div class="container metric-rail" aria-label="Museum project evidence">
+      <div class="container metric-rail" aria-label="Museum project evidence" data-reveal>
         <div><strong>28,000+</strong><span>exhibits structured</span></div>
         <div><strong>12</strong><span>halls mapped</span></div>
         <div><strong>3</strong><span>languages supported</span></div>
@@ -226,38 +230,109 @@
 
     <section class="section-frame" id="projects" aria-labelledby="projects-title">
       <div class="container">
-        <div class="section-intro section-intro-wide">
+        <div class="section-intro section-intro-wide" data-reveal>
           <p class="eyebrow">02 / Selected work</p>
           <h2 id="projects-title">A museum portal<br /><span>built for discovery.</span></h2>
           <p class="section-summary">A multilingual information and education portal for the Historical Museum of Sughd Region — designed, built, and connected to an AI audio experience.</p>
         </div>
 
-        <article class="case-study panel">
+        <article class="case-study panel" data-reveal>
           <div class="case-study-visual">
-            <div class="browser-frame" role="img" aria-label="Abstract editorial interface preview for the Khujand museum portal">
-              <div class="browser-bar"><span class="browser-dots" aria-hidden="true">•••</span><span>khujand-museum.com</span><span>RU / TJ / EN</span></div>
+            <div class="browser-frame" aria-label="Interactive architectural preview for the Khujand museum portal">
+              <div class="browser-bar">
+                <span class="browser-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="browser-url">khujand-museum.com</span>
+                <span class="browser-lang">RU / TJ / EN</span>
+              </div>
               <div class="museum-preview">
-                <div class="museum-preview-heading"><span>HISTORY / 04</span><strong>Echoes of Khujand</strong></div>
-                <div class="museum-map" aria-hidden="true">
-                  <span class="map-line map-line-a"></span>
-                  <span class="map-line map-line-b"></span>
-                  <span class="map-point map-point-a">01</span>
-                  <span class="map-point map-point-b">05</span>
-                  <span class="map-point map-point-c">12</span>
+                <div class="museum-preview-heading">
+                  <span id="museum-hall-era">ERA I · ANTIQUITY / HALL 01</span>
+                  <strong id="museum-hall-title">Echoes of Khujand</strong>
+                  <p class="museum-preview-detail" id="museum-hall-detail">Entry gallery structuring regional archaeological collections with trilingual labels and WebP exhibit plates.</p>
                 </div>
-                <div class="museum-preview-footer"><span>12 exhibition halls</span><span class="audio-badge">◉ AI audio guide</span></div>
+
+                <div class="museum-route-diagram" aria-hidden="true">
+                  <svg viewBox="0 0 420 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="8" y="8" width="404" height="104" rx="14" stroke="currentColor" stroke-opacity="0.22" stroke-dasharray="4 4" />
+                    <path d="M52 84 C 130 22, 232 98, 368 36" stroke="currentColor" stroke-width="1.8" stroke-opacity="0.55" />
+                    <g class="route-stop is-active" data-route-stop="01">
+                      <circle cx="52" cy="84" r="15" class="route-node" />
+                      <text x="52" y="88" text-anchor="middle" class="route-label">01</text>
+                    </g>
+                    <g class="route-stop" data-route-stop="05">
+                      <circle cx="210" cy="60" r="15" class="route-node" />
+                      <text x="210" y="64" text-anchor="middle" class="route-label">05</text>
+                    </g>
+                    <g class="route-stop" data-route-stop="12">
+                      <circle cx="368" cy="36" r="15" class="route-node" />
+                      <text x="368" y="40" text-anchor="middle" class="route-label">12</text>
+                    </g>
+                  </svg>
+                </div>
+
+                <div class="museum-hall-tabs" role="group" aria-label="Explore museum hall architecture">
+                  <button
+                    type="button"
+                    class="museum-hall-tab is-active"
+                    data-hall-trigger
+                    data-hall-code="01"
+                    aria-pressed="true"
+                    data-hall-era="ERA I · ANTIQUITY / HALL 01"
+                    data-hall-title="Echoes of Khujand"
+                    data-hall-detail="Entry gallery structuring regional archaeological collections with trilingual labels and WebP exhibit plates."
+                    data-hall-audio="◉ AI audio guide · Hall 01 narrated"
+                  >
+                    <span>01</span> Antiquity
+                  </button>
+                  <button
+                    type="button"
+                    class="museum-hall-tab"
+                    data-hall-trigger
+                    data-hall-code="05"
+                    aria-pressed="false"
+                    data-hall-era="ERA II · SILK ROAD / HALL 05"
+                    data-hall-title="Citadel &amp; Trade Routes"
+                    data-hall-detail="Interactive route navigation linking historic manuscripts, ceramics, and ElevenLabs voice narration."
+                    data-hall-audio="◉ AI audio guide · ElevenLabs Studio"
+                  >
+                    <span>05</span> Silk Road
+                  </button>
+                  <button
+                    type="button"
+                    class="museum-hall-tab"
+                    data-hall-trigger
+                    data-hall-code="12"
+                    aria-pressed="false"
+                    data-hall-era="ERA IV · MODERN SUGHD / HALL 12"
+                    data-hall-title="Living Heritage"
+                    data-hall-detail="Contemporary cultural archive mapped for mobile visitors across RU / TJ / EN content views."
+                    data-hall-audio="◉ Multilingual index · 12 halls"
+                  >
+                    <span>12</span> Modern Era
+                  </button>
+                </div>
+
+                <div class="museum-preview-footer">
+                  <span>12 exhibition halls · 4 eras</span>
+                  <span class="audio-badge" id="museum-hall-audio">◉ AI audio guide · Hall 01 narrated</span>
+                </div>
               </div>
             </div>
-            <p class="visual-caption"><span>Interface direction</span><span>Multilingual / media-rich</span></p>
+            <p class="visual-caption"><span>Interactive architecture preview</span><span>Multilingual · AI audio</span></p>
           </div>
+
           <div class="case-study-content">
-            <div class="case-study-topline"><span class="tag tag-accent">Featured case study</span><span class="eyebrow">2025—2026 / Khujand</span></div>
+            <div class="case-study-topline">
+              <span class="tag tag-accent">Featured case study</span>
+              <span class="eyebrow">2025—2026 / Khujand</span>
+            </div>
             <h3>Historical Museum of Sughd Region</h3>
-            <p class="case-study-lede">A responsive portal that gives a large cultural archive a clear, welcoming way in. I shaped the UI/UX, built the frontend, and connected the story to an AI-powered audio guide.</p>
+            <p class="case-study-lede">A responsive portal that gives a 28,000+ exhibit cultural archive a clear, welcoming way in. I designed the UI/UX, built the frontend, optimised 90+ images to WebP, and integrated an AI-powered audio guide.</p>
             <div class="case-study-facts">
-              <div><span>Scope</span><strong>Frontend · UI/UX · AI integration</strong></div>
-              <div><span>Content</span><strong>RU / TJ / EN across 12 halls</strong></div>
+              <div><span>Scope</span><strong>Frontend · UI/UX · AI media integration</strong></div>
+              <div><span>Content</span><strong>RU / TJ / EN across 12 halls &amp; 4 eras</strong></div>
               <div><span>Media</span><strong>Audio guide for 5 halls via ElevenLabs Studio AI</strong></div>
+              <div><span>Delivery</span><strong>90+ archival visuals converted to lightweight WebP</strong></div>
             </div>
             <div class="case-study-actions">
               <a class="button button-primary" href="https://khujand-museum.com" target="_blank" rel="noopener noreferrer">Visit live project <span aria-hidden="true">↗</span></a>
@@ -266,19 +341,36 @@
           </div>
         </article>
 
-        <div class="project-grid">
+        <div class="project-grid" data-reveal>
           <article class="project-card panel">
-            <div class="project-card-topline"><span class="eyebrow">01 / Portfolio system</span><span class="project-index">01</span></div>
-            <h3>This portfolio, rebuilt around proof.</h3>
-            <p>A static GitHub Pages experience for showing frontend craft, accessible interaction, and the decisions behind a real digital project.</p>
-            <div class="tag-list"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">GitHub Pages</span></div>
+            <div class="project-card-topline">
+              <span class="eyebrow">01 / Portfolio system</span>
+              <span class="project-index">01</span>
+            </div>
+            <h3>This portfolio, engineered around proof.</h3>
+            <p>A dependency-light static GitHub Pages architecture combining local variable typography, theme-reactive WebGL 3D, strict CSP isolation, and automated Playwright browser verification.</p>
+            <div class="tag-list">
+              <span class="tag">HTML5</span>
+              <span class="tag">CSS3</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">Three.js WebGL</span>
+              <span class="tag">GitHub Pages</span>
+            </div>
             <a class="text-link" href="https://github.com/UmarUsmomi/umarusmoni.github.io" target="_blank" rel="noopener noreferrer">View source on GitHub <span aria-hidden="true">↗</span></a>
           </article>
           <article class="project-card panel">
-            <div class="project-card-topline"><span class="eyebrow">02 / Freelance practice</span><span class="project-index">02</span></div>
-            <h3>Web, content, and digital delivery.</h3>
-            <p>Project work across Kwork and Workzilla: responsive page updates, HTML/CSS fixes, content operations, AI-generated media, and e-commerce creatives.</p>
-            <div class="tag-list"><span class="tag">Responsive UI</span><span class="tag">Content systems</span><span class="tag">AI media</span><span class="tag">CRM / Sheets</span></div>
+            <div class="project-card-topline">
+              <span class="eyebrow">02 / Freelance practice</span>
+              <span class="project-index">02</span>
+            </div>
+            <h3>Commercial web, content &amp; digital delivery.</h3>
+            <p>Two years of client delivery across Kwork and Workzilla (2024—2026): responsive landing updates, cross-browser HTML/CSS fixes, AI-assisted media workflows, and e-commerce creatives.</p>
+            <div class="tag-list">
+              <span class="tag">Responsive UI</span>
+              <span class="tag">Content systems</span>
+              <span class="tag">AI media</span>
+              <span class="tag">CRM / Sheets</span>
+            </div>
             <a class="text-link" href="mailto:zunur007@gmail.com">Bring a brief <span aria-hidden="true">↗</span></a>
           </article>
         </div>
@@ -287,58 +379,90 @@
 
     <section class="section-frame section-frame-soft" id="skills" aria-labelledby="skills-title">
       <div class="container">
-        <div class="section-intro section-intro-wide">
+        <div class="section-intro section-intro-wide" data-reveal>
           <p class="eyebrow">03 / Capabilities</p>
           <h2 id="skills-title">The toolkit behind<br /><span>the finished surface.</span></h2>
           <p class="section-summary">A practical stack for taking a project from raw information to a responsive, publishable experience.</p>
         </div>
-        <div class="capability-grid">
+        <div class="capability-grid" data-reveal>
           <article class="capability-card">
-            <span class="capability-number">01</span>
+            <div class="capability-head">
+              <span class="capability-number">01</span>
+              <span class="capability-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+              </span>
+            </div>
             <h3>Frontend foundations</h3>
-            <p>Semantic HTML, modern CSS, JavaScript behavior, responsive layouts, and cross-browser polish.</p>
-            <ul class="capability-list"><li>HTML5 / CSS3</li><li>JavaScript</li><li>Responsive UI</li><li>Git / GitHub Pages</li></ul>
+            <p>Semantic HTML, modern CSS architecture, clean JavaScript state, responsive grids, and cross-browser polish.</p>
+            <ul class="capability-list"><li>HTML5 / CSS3</li><li>JavaScript (ES6+)</li><li>Responsive UI</li><li>Git / GitHub Pages</li></ul>
           </article>
           <article class="capability-card">
-            <span class="capability-number">02</span>
+            <div class="capability-head">
+              <span class="capability-number">02</span>
+              <span class="capability-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+              </span>
+            </div>
             <h3>Interface thinking</h3>
-            <p>Clear hierarchy, useful states, content-first structure, and UI/UX decisions that make information easier to use.</p>
+            <p>Clear typographic hierarchy, accessible focus &amp; keyboard flows, mobile-first layouts, and asset weight discipline.</p>
             <ul class="capability-list"><li>UI / UX structure</li><li>Accessible interaction</li><li>Mobile-first thinking</li><li>WebP optimisation</li></ul>
           </article>
           <article class="capability-card">
-            <span class="capability-number">03</span>
+            <div class="capability-head">
+              <span class="capability-number">03</span>
+              <span class="capability-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"></path><path d="M8 7v10"></path><path d="M16 7v10"></path><path d="M4 11v2"></path><path d="M20 11v2"></path></svg>
+              </span>
+            </div>
             <h3>AI media systems</h3>
-            <p>Turning AI tools into practical product content: audio guides, voice, text, visual assets, and reusable workflows.</p>
-            <ul class="capability-list"><li>ElevenLabs Studio AI</li><li>Prompt engineering</li><li>Audio / visual content</li><li>SMM and e-commerce media</li></ul>
+            <p>Turning AI tools into shippable product assets: multilingual audio guides, structured copy, and visual preparation.</p>
+            <ul class="capability-list"><li>ElevenLabs Studio AI</li><li>Prompt engineering</li><li>Audio / visual content</li><li>SMM &amp; e-commerce media</li></ul>
           </article>
           <article class="capability-card">
-            <span class="capability-number">04</span>
+            <div class="capability-head">
+              <span class="capability-number">04</span>
+              <span class="capability-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+              </span>
+            </div>
             <h3>Digital operations</h3>
-            <p>Reliable project support around the interface: data checking, content moderation, CRM workflows, and client communication.</p>
-            <ul class="capability-list"><li>Excel / Google Sheets</li><li>Content moderation</li><li>CRM workflows</li><li>Business communication</li></ul>
+            <p>Dependable execution around the interface: structured data verification, content moderation, CRM workflows, and clear communication.</p>
+            <ul class="capability-list"><li>Excel / Google Sheets</li><li>Content moderation</li><li>CRM workflows</li><li>Client communication</li></ul>
           </article>
         </div>
       </div>
     </section>
 
     <section class="section-frame" id="experience" aria-labelledby="experience-title">
-      <div class="container experience-grid">
+      <div class="container experience-grid" data-reveal>
         <div class="section-intro">
           <p class="eyebrow">04 / Context</p>
           <h2 id="experience-title">Built through<br /><span>practice.</span></h2>
         </div>
         <div class="timeline">
           <article class="timeline-item">
-            <div class="timeline-date">2024—2026</div>
-            <div><h3>Web &amp; digital freelance work</h3><p>Kwork and Workzilla · Remote</p><p>Adaptive page builds, HTML/CSS fixes, content operations, AI media, e-commerce creatives, and client communication.</p></div>
+            <div class="timeline-date"><span>2025—2026</span></div>
+            <div class="timeline-body">
+              <p class="timeline-org">Historical Museum of Sughd Region · Khujand</p>
+              <h3>Frontend developer &amp; AI integrator</h3>
+              <p>Designed and built the multilingual museum portal from the ground up — information architecture across 12 halls, WebP media pipeline, and ElevenLabs AI audio guide integration.</p>
+            </div>
           </article>
           <article class="timeline-item">
-            <div class="timeline-date">2025—2026</div>
-            <div><h3>Frontend developer &amp; AI integrator</h3><p>Historical Museum of Sughd Region · Khujand</p><p>Built the museum portal from the ground up, including UI/UX, multilingual structure, interactive hall navigation, and AI audio.</p></div>
+            <div class="timeline-date"><span>2024—2026</span></div>
+            <div class="timeline-body">
+              <p class="timeline-org">Kwork &amp; Workzilla · Remote</p>
+              <h3>Web &amp; digital freelance specialist</h3>
+              <p>Two years of commercial project work: responsive page builds, HTML/CSS interface fixes, content operations, AI-generated media, and e-commerce creative assets.</p>
+            </div>
           </article>
           <article class="timeline-item">
-            <div class="timeline-date">2020—2026</div>
-            <div><h3>Physical-Mathematical Lyceum No. 1</h3><p>Khujand · Physics, mathematics, and computer science</p><p>A strong analytical base for learning new tools quickly and making structured technical decisions.</p></div>
+            <div class="timeline-date"><span>2020—2026</span></div>
+            <div class="timeline-body">
+              <p class="timeline-org">Khujand · Physics, mathematics &amp; computer science</p>
+              <h3>Physical-Mathematical Lyceum No. 1</h3>
+              <p>Rigorous quantitative and algorithmic foundation for picking up modern web tools rapidly and making disciplined engineering decisions.</p>
+            </div>
           </article>
         </div>
       </div>
@@ -346,45 +470,109 @@
 
     <section class="section-frame section-frame-soft" id="certificates" aria-labelledby="certificates-title">
       <div class="container">
-        <div class="section-intro section-intro-wide">
+        <div class="section-intro section-intro-wide" data-reveal>
           <p class="eyebrow">05 / Proof</p>
           <h2 id="certificates-title">Learning that ships<br /><span>into the work.</span></h2>
-          <p class="section-summary">Selected DeepLearning.AI certificates kept as supporting proof, not as a substitute for shipped projects.</p>
+          <p class="section-summary">Verified DeepLearning.AI credentials kept as supporting proof alongside shipped projects.</p>
         </div>
-        <div class="certificate-grid">
-          <button class="certificate-card" type="button" data-certificate-trigger data-src="assets/certificates/cert-professional.png" data-caption="Generative AI for Software Development">
-            <span class="certificate-image"><img src="assets/certificates/cert-professional.png" alt="Generative AI for Software Development professional certificate" loading="lazy" decoding="async" width="600" height="450" /></span>
-            <span class="certificate-card-body"><span class="eyebrow">Professional certificate</span><strong>Generative AI for Software Development</strong><span class="text-link">Preview certificate <span aria-hidden="true">↗</span></span></span>
+        <div class="certificate-grid" data-reveal>
+          <button
+            class="certificate-card"
+            type="button"
+            data-certificate-trigger
+            data-src="assets/certificates/cert-professional.png"
+            data-caption="Generative AI for Software Development"
+            data-meta="DeepLearning.AI · Issued Mar 30, 2026 · 3-Course Professional Certificate"
+            data-verify="https://learn.deeplearning.ai/certificates/3e27d8c4-ae9e-417c-94ac-602d03a86792"
+          >
+            <span class="certificate-image"><img src="assets/certificates/cert-professional.png" alt="Generative AI for Software Development professional certificate" fetchpriority="low" width="600" height="450" /></span>
+            <span class="certificate-card-body">
+              <span class="eyebrow">Professional · Mar 2026</span>
+              <strong>Generative AI for Software Development</strong>
+              <span class="text-link">Inspect credential <span aria-hidden="true">↗</span></span>
+            </span>
           </button>
-          <button class="certificate-card" type="button" data-certificate-trigger data-src="assets/certificates/cert-team-ai.png" data-caption="Team Software Engineering with AI">
-            <span class="certificate-image"><img src="assets/certificates/cert-team-ai.png" alt="Team Software Engineering with AI course certificate" loading="lazy" decoding="async" width="400" height="300" /></span>
-            <span class="certificate-card-body"><span class="eyebrow">Course certificate</span><strong>Team Software Engineering with AI</strong><span class="text-link">Preview certificate <span aria-hidden="true">↗</span></span></span>
+          <button
+            class="certificate-card"
+            type="button"
+            data-certificate-trigger
+            data-src="assets/certificates/cert-team-ai.png"
+            data-caption="Team Software Engineering with AI"
+            data-meta="DeepLearning.AI · Issued Mar 23, 2026 · Course Certificate"
+            data-verify="https://learn.deeplearning.ai/certificates/5b0e90e1-aa45-4a9d-9354-7106708a2adc"
+          >
+            <span class="certificate-image"><img src="assets/certificates/cert-team-ai.png" alt="Team Software Engineering with AI course certificate" fetchpriority="low" width="400" height="300" /></span>
+            <span class="certificate-card-body">
+              <span class="eyebrow">Course · Mar 2026</span>
+              <strong>Team Software Engineering with AI</strong>
+              <span class="text-link">Inspect credential <span aria-hidden="true">↗</span></span>
+            </span>
           </button>
-          <button class="certificate-card" type="button" data-certificate-trigger data-src="assets/certificates/cert-ai-systems.png" data-caption="AI-Powered Software and System Design">
-            <span class="certificate-image"><img src="assets/certificates/cert-ai-systems.png" alt="AI-Powered Software and System Design course certificate" loading="lazy" decoding="async" width="400" height="300" /></span>
-            <span class="certificate-card-body"><span class="eyebrow">Course certificate</span><strong>AI-Powered Software &amp; System Design</strong><span class="text-link">Preview certificate <span aria-hidden="true">↗</span></span></span>
+          <button
+            class="certificate-card"
+            type="button"
+            data-certificate-trigger
+            data-src="assets/certificates/cert-ai-systems.png"
+            data-caption="AI-Powered Software and System Design"
+            data-meta="DeepLearning.AI · Issued Mar 30, 2026 · Course Certificate"
+            data-verify="https://learn.deeplearning.ai/certificates/a8ecff7f-3a26-44f1-8648-7cd3beafe96b"
+          >
+            <span class="certificate-image"><img src="assets/certificates/cert-ai-systems.png" alt="AI-Powered Software and System Design course certificate" fetchpriority="low" width="400" height="300" /></span>
+            <span class="certificate-card-body">
+              <span class="eyebrow">Course · Mar 2026</span>
+              <strong>AI-Powered Software &amp; System Design</strong>
+              <span class="text-link">Inspect credential <span aria-hidden="true">↗</span></span>
+            </span>
           </button>
-          <button class="certificate-card" type="button" data-certificate-trigger data-src="assets/certificates/cert-intro-ai.png" data-caption="Introduction to Generative AI for Software Development">
-            <span class="certificate-image"><img src="assets/certificates/cert-intro-ai.png" alt="Introduction to Generative AI for Software Development course certificate" loading="lazy" decoding="async" width="400" height="300" /></span>
-            <span class="certificate-card-body"><span class="eyebrow">Course certificate</span><strong>Introduction to Generative AI for Software Development</strong><span class="text-link">Preview certificate <span aria-hidden="true">↗</span></span></span>
+          <button
+            class="certificate-card"
+            type="button"
+            data-certificate-trigger
+            data-src="assets/certificates/cert-intro-ai.png"
+            data-caption="Introduction to Generative AI for Software Development"
+            data-meta="DeepLearning.AI · Issued Mar 11, 2026 · Course Certificate"
+            data-verify="https://learn.deeplearning.ai/certificates/1a440eab-b001-4b22-8557-dd37a0abdbfd"
+          >
+            <span class="certificate-image"><img src="assets/certificates/cert-intro-ai.png" alt="Introduction to Generative AI for Software Development course certificate" fetchpriority="low" width="400" height="300" /></span>
+            <span class="certificate-card-body">
+              <span class="eyebrow">Course · Mar 2026</span>
+              <strong>Introduction to Generative AI for Software Development</strong>
+              <span class="text-link">Inspect credential <span aria-hidden="true">↗</span></span>
+            </span>
           </button>
         </div>
       </div>
     </section>
 
     <section class="section-frame contact-section" id="contact" aria-labelledby="contact-title">
-      <div class="container contact-grid">
+      <div class="container contact-grid" data-reveal>
         <div class="section-intro">
           <p class="eyebrow">06 / Contact</p>
           <h2 id="contact-title">Have a project<br /><span>in mind?</span></h2>
         </div>
         <div class="contact-copy">
-          <p class="lede">Tell me what you are building, what is not working yet, or what needs a clearer digital home.</p>
-          <a class="contact-email" href="mailto:zunur007@gmail.com">zunur007@gmail.com <span aria-hidden="true">↗</span></a>
+          <p class="lede">Tell me what you are building, what needs sharper structure, or where a fast responsive interface can help.</p>
+          <div class="contact-email-row">
+            <a class="contact-email" href="mailto:zunur007@gmail.com">zunur007@gmail.com <span aria-hidden="true">↗</span></a>
+            <button class="icon-button copy-email-btn" id="copy-email-btn" type="button" data-email="zunur007@gmail.com">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span>Copy email</span>
+            </button>
+            <span class="sr-only" id="copy-email-status" role="status" aria-live="polite"></span>
+          </div>
           <div class="contact-links">
-            <a href="https://t.me/cloudety" target="_blank" rel="noopener noreferrer">Telegram <span aria-hidden="true">↗</span></a>
-            <a href="https://www.linkedin.com/in/umar-usmoni-b3730b402" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
-            <a href="https://github.com/UmarUsmomi" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+            <a class="contact-pill" href="https://t.me/cloudety" target="_blank" rel="noopener noreferrer">
+              <span>Telegram · @cloudety</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+            <a class="contact-pill" href="https://www.linkedin.com/in/umar-usmoni-b3730b402" target="_blank" rel="noopener noreferrer">
+              <span>LinkedIn</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+            <a class="contact-pill" href="https://github.com/UmarUsmomi" target="_blank" rel="noopener noreferrer">
+              <span>GitHub</span>
+              <span aria-hidden="true">↗</span>
+            </a>
           </div>
         </div>
       </div>
@@ -394,7 +582,10 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <p>Designed and built by Umar Usmoni.</p>
-      <p>© 2026 <span aria-hidden="true">·</span> Khujand, Tajikistan</p>
+      <div class="footer-meta">
+        <p>© 2026 <span aria-hidden="true">·</span> Khujand, Tajikistan</p>
+        <a class="footer-top-link" href="#hero">Back to top <span aria-hidden="true">↑</span></a>
+      </div>
     </div>
   </footer>
 
@@ -402,13 +593,33 @@
     <div class="dialog-panel">
       <div class="dialog-header">
         <div>
-          <p class="eyebrow">Verified proof</p>
+          <p class="eyebrow">Verified credential</p>
           <h2 id="certificate-dialog-title">Certificate preview</h2>
         </div>
         <button class="icon-button" id="certificate-dialog-close" type="button" aria-label="Close certificate preview">Close</button>
       </div>
-      <img id="certificate-dialog-image" src="assets/certificates/cert-professional.png" alt="Expanded certificate preview" width="600" height="450" />
-      <p class="dialog-caption" id="certificate-dialog-caption">Generative AI for Software Development</p>
+      <div class="dialog-image-frame">
+        <img id="certificate-dialog-image" src="assets/certificates/cert-professional.png" alt="Expanded certificate preview" width="600" height="450" />
+      </div>
+      <div class="dialog-footer">
+        <div class="dialog-caption-group">
+          <p class="dialog-caption" id="certificate-dialog-caption">Generative AI for Software Development</p>
+          <p class="dialog-meta" id="certificate-dialog-meta">DeepLearning.AI · Issued Mar 30, 2026 · 3-Course Professional Certificate</p>
+        </div>
+        <div class="dialog-controls">
+          <button class="icon-button" id="certificate-dialog-prev" type="button" aria-label="Previous certificate">← Prev</button>
+          <button class="icon-button" id="certificate-dialog-next" type="button" aria-label="Next certificate">Next →</button>
+          <a
+            class="button button-primary"
+            id="certificate-dialog-verify"
+            href="https://learn.deeplearning.ai/certificates/3e27d8c4-ae9e-417c-94ac-602d03a86792"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Verify credential <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
     </div>
   </dialog>
 
