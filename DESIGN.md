@@ -93,15 +93,15 @@ updating this contract.
 
 | Token family | Direction |
 | --- | --- |
-| Background | `#0B0F0D` ink; `#121A15` surface; `#19231C` raised surface |
-| Text | `#F3F0E8` primary; `#A4ADA3` muted; `#717B73` subtle |
-| Accent | `#C7F36B` acid lime; `#77C9AD` muted teal |
-| Lines | neutral green-gray at low alpha; stronger only for focus |
-| Typography | system sans for prose/headings; system mono for metadata |
-| Spacing | 4, 8, 12, 16, 24, 32, 48, 64, 96, 128px |
-| Radius | 8px small, 16px medium, 24px large, pill only for status/tags |
-| Container | max-width 1200px with 16–32px fluid gutters |
-| Motion | 120–240ms transitions; 400–700ms reveals; ease-out only |
+| Background | `light-dark(#0A0E0C, #F5F6EF)` ink; `#111814` / `#FFFFFF` surface; `#18221C` / `#ECF0E4` raised surface |
+| Text | `light-dark(#F3F1EA, #141C16)` primary; `#A6B0A6` / `#49564C` muted; `#78847B` / `#627065` subtle |
+| Accent | `light-dark(#C7F36B, #2E5410)` acid lime / botanical green; `light-dark(#77C9AD, #1A6850)` muted teal |
+| Lines | neutral green-gray at low alpha; stronger only for focus and active pills |
+| Typography | bundled SIL-OFL variable WOFF2 (`Space Grotesk` display, `Plus Jakarta Sans` prose, `JetBrains Mono` metadata) with system fallbacks |
+| Spacing | 4, 8, 12, 16, 20, 24, 32, 48, 64, 96, 128px |
+| Radius | 8px small, 14px medium, 22px large, pill only for buttons/status/tags |
+| Container | max-width 1240px with 18–40px fluid gutters |
+| Motion | 140–220ms transitions; 540–620ms reveals; ease-out only |
 | Breakpoints | 390, 768, 1024, 1440, and 1920px QA widths |
 
 ## 5. Primitive inventory
@@ -109,15 +109,16 @@ updating this contract.
 Build and style these reusable primitives rather than styling each section as
 an isolated visual:
 
-- `site-header` / `mobile-nav`
-- `button-primary`, `button-secondary`, and text links
+- `site-header` (with `theme-toggle`) / `mobile-nav`
+- `hero-3d-card` (local Three.js + GLB studio showcase with 44px controls)
+- `button-primary`, `button-secondary`, `icon-button`, and text links
 - `section-intro` with eyebrow, title, and supporting copy
 - `proof-strip` and `metric-rail`
-- `case-study-card` / `project-card`
+- `case-study-card` (with interactive hall/era architectural route preview) / `project-card`
 - `tag-list` and `meta-row`
 - `capability-card`
-- `certificate-card` and accessible certificate dialog
-- `contact-link-group`
+- `certificate-card` and accessible certificate dialog carousel with verification links
+- `contact-link-group` and accessible `copy-email-btn`
 - `site-footer`
 
 Every interactive primitive needs default, hover, focus-visible, pressed, and

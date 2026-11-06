@@ -101,7 +101,13 @@ path is not the deployment address.
 ├── favicon.svg
 ├── assets/
 │   ├── og-image.svg
+│   ├── 3d/
+│   │   └── hero-model.glb
 │   ├── certificates/
+│   ├── fonts/
+│   │   ├── jetbrains-mono-latin.woff2
+│   │   ├── plus-jakarta-sans-latin.woff2
+│   │   └── space-grotesk-latin.woff2
 │   └── video/
 ├── css/
 │   ├── index.css
@@ -109,7 +115,10 @@ path is not the deployment address.
 │   ├── sections.css
 │   └── animations.css
 ├── js/
-│   └── main.js
+│   ├── hero-3d.js
+│   ├── main.js
+│   └── vendor/
+│       └── three.min.js
 └── tests/
     ├── conftest.py
     ├── test_repository.py
